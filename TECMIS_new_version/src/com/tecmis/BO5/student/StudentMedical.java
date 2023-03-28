@@ -104,7 +104,7 @@ public class StudentMedical {
                 medical.setSubject_code(rs.getString("subject_code"));
                 medical.setDescription(rs.getString("description"));
                 medical.setState(rs.getString("state"));
-                medical.setDepartment_id(rs.getString("student_department_department_id"));
+                medical.setDepartment_id(rs.getString("department_id"));
                 medical.setStudent_id(rs.getString("student_id"));
  
                 list.add(medical);
@@ -112,7 +112,7 @@ public class StudentMedical {
             
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(null, " Medical loading Error");
         }
         return list;
     }

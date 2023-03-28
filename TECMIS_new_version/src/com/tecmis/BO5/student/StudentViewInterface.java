@@ -14,7 +14,7 @@ public interface StudentViewInterface
     void LoadMedical ();
     void LoadCourse();
     void LoadMarks();
-    void LoadAttendance();
+    void LoadAttendance(String usersub);
 
     
 }

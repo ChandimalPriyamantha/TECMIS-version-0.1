@@ -8,7 +8,9 @@ import com.tecmic.B05.TecmisDB.TecmisDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,7 +28,7 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
         LoadMarks();
         LoadMedical ();
         LoadCourse();
-        LoadAttendance();
+        
     }
     
     
@@ -74,7 +76,7 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
               String level=rs.getLevel();
            
               dt.addRow(new Object[]{course_id,course_name,credit,courseType});
-            
+              sub.addItem(course_name);
         }
   
      }
@@ -111,29 +113,56 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
     
          
     
-    public void LoadAttendance()
+    public void LoadAttendance(String usersub)
     {   
+        Auth auth = Auth.getInstance();
+        String usr = auth.getUsername();
+    
         StudentAttendance att=new StudentAttendance();
-        //String sub=lblsubcode.getText();
-       
+        
       
-        List<StudentAttendance> list=att.list();
+       List<StudentAttendance> list = new ArrayList<StudentAttendance>();
+        try{
+           
+           Connection con = TecmisDB.getConnection();
+           
+           
+           String sql ="SELECT date,hour,type,state FROM attendence where student_id='"+usr+"' and course_id IN (select course_id from course where course_name='"+usersub+"')";
+           PreparedStatement ps = con.prepareStatement(sql);
+           ResultSet rs = ps.executeQuery();
+           
+           while(rs.next()){
+               StudentAttendance atnd = new StudentAttendance();
+              
+               atnd.setType(rs.getString("type"));
+               atnd.setState(rs.getString("state"));
+               atnd.setDate(rs.getString("date"));
+               atnd.setHour(rs.getInt("hour"));
+        
+               list.add(atnd);
+           }
+           
+       }catch(Exception e){
+           e.printStackTrace();
+           JOptionPane.showMessageDialog(null, "ERROR");
+       }
+       
+  
+       
+       // List<StudentAttendance> list=att.list();
         DefaultTableModel dt = (DefaultTableModel)attenTbl.getModel();
          dt.setRowCount(0);
          for(StudentAttendance rs:list)
          {
-              String student_id=rs.getStudent_id();
-              int  attId=rs.getAttendence_id();
+
               String type=rs.getType();
               String state=rs.getState();
               String date=rs.getDate();
-              String course_id=rs.getCourse_id();
-              String lecturer_id=rs.getLecturer_id();
               int  hour=rs.getHour();
              
-        
+              
              dt.addRow(new Object[]{date,hour,type,state});
-         
+              
            }
          }
     
@@ -208,12 +237,11 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
         jScrollPane4 = new javax.swing.JScrollPane();
         Meditbl = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        lblsubcode = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         attenTbl = new javax.swing.JTable();
+        sub = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -694,10 +722,6 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Subject Code  :");
-
         jLabel13.setBackground(new java.awt.Color(0, 153, 153));
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 153, 153));
@@ -718,54 +742,55 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
         ));
         jScrollPane1.setViewportView(attenTbl);
 
+        sub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(211, 211, 211)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(sub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(29, 29, 29)
+                .addComponent(sub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(275, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(216, Short.MAX_VALUE)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(210, 210, 210))
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblsubcode, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(387, 387, 387)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(387, 387, 387)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(jLabel13)
-                .addGap(63, 63, 63)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblsubcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Attendance", new javax.swing.ImageIcon(getClass().getResource("/Images/attendance.png")), jPanel9); // NOI18N
@@ -975,6 +1000,11 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
         view_lecturematerial();
     }//GEN-LAST:event_searchActionPerformed
 
+    private void subActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subActionPerformed
+            String usersub=(String) sub.getSelectedItem();
+            LoadAttendance(usersub);
+    }//GEN-LAST:event_subActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1065,7 +1095,6 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -1086,9 +1115,9 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JTextField lblsubcode;
     private javax.swing.JTable resultTbl;
     private javax.swing.JButton search;
+    private javax.swing.JComboBox<String> sub;
     // End of variables declaration//GEN-END:variables
 
 
