@@ -10,6 +10,7 @@ import com.tecmic.B05.lecture.LectureLoginForm;
 import com.tecmic.B05.lecture.LectureView;
 
 import com.tecmic.B05.user.User;
+import com.tecmis.BO5.student.StudentLoginForm;
 
 
 /**
@@ -334,7 +335,8 @@ public class TechmisView extends javax.swing.JFrame {
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         // TODO add your handling code here:
-        //new StudentLoginForm().setVisible(true);
+        new StudentLoginForm().setVisible(true);
+        this.dispose();
         
        
     }//GEN-LAST:event_jPanel5MouseClicked

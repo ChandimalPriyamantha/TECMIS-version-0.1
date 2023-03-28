@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
@@ -20,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class Student extends User
 {
-
+      
     
     public void EditProfile(Student student){
        String sql;

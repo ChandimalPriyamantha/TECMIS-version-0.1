@@ -7,6 +7,7 @@ package com.tecmic.B05.TecmisDB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+
 /**
  *
  * @author Vivobook
@@ -16,9 +17,9 @@ public class TecmisDB {
     
     static Connection con;
     static String driver = "com.mysql.jdbc.Driver";
-    static String url = "jdbc:mysql://localhost/tecmis_db";
+    static String url = "jdbc:mysql://localhost:3306/tecmis_db";
     static String uname = "root";
-    static String pass = "1234";
+    static String pass = "";
     
     
     public static Connection getConnection()throws Exception{

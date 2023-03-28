@@ -90,7 +90,7 @@ public class StudentCourse {
            Connection con = TecmisDB.getConnection(); 
           
            
-            String sql = "SELECT * FROM course INNER JOIN student ON course.level == student.level where student_id='"+usr+"'";
+            String sql = "SELECT course_id,course_name,credit,course_type FROM course INNER JOIN student ON student.level=course.level where student.id='"+usr+"'";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             
@@ -99,11 +99,11 @@ public class StudentCourse {
             while(rs.next()){
                 StudentCourse course= new StudentCourse();
                 course.setCourseID(rs.getString("course_id"));
-                course.setLevel(rs.getString("level"));
+                //course.setLevel(rs.getString("level"));
                 course.setCredit(rs.getInt("credit"));
                 course.setCourseName(rs.getString("course_name"));
                 course.setCourseType(rs.getString("course_type"));
-                course.setDepartmentID(rs.getString("department_department_id"));
+                //course.setDepartmentID(rs.getString("department_department_id"));
                 
                 
                 list.add( course);
@@ -111,39 +111,12 @@ public class StudentCourse {
             
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(null, "Course Query Error");
         }
         return list;
   
     
     }
     
-      public  StudentCourse get(String id) {
-        StudentCourse course = new StudentCourse();
-       
-        try {
-            Connection con = TecmisDB.getConnection();
-            String sql = "SELECT * FROM course WHERE course_id=?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, id);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                
-                setCourseID(rs.getString("course_id"));
-                setLevel(rs.getString("level"));
-                setCredit(rs.getInt("credit"));
-                setCourseName(rs.getString("course_name"));
-                setCourseType(rs.getString("course_type"));
-                setDepartmentID(rs.getString("department_department_id"));
-               System.out.println(getCourseName());
- 
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error");
-        }
-        return course;
-    }
-   
+
 }

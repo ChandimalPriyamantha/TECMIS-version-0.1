@@ -5,25 +5,10 @@
 package com.tecmis.BO5.student;
 
 import com.tecmic.B05.TecmisDB.TecmisDB;
-import com.tecmis.B05.notice.Notice;
-import com.tecmis.B05.course.Course;
-import com.tecmis.BO5.student.Student;
-import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
-import net.proteanit.sql.DbUtils;
-import com.tecmis.B05.notice.Notice;
-//import net.proteanit.sql.DbUtils;
-//import com.tecmis.B05.notice.Notice;
-
-import java.awt.Desktop;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
-import static javax.swing.UIManager.get;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -49,10 +34,9 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
 
     
     
+    @Override
     public void LoadMedical (){
         StudentMedical md = new StudentMedical();
-        
-        
         List<StudentMedical> list = md.list();
         
         DefaultTableModel dt = (DefaultTableModel) Meditbl.getModel();
@@ -74,41 +58,26 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
     
     public void LoadCourse()
     {   
-        try{
-      Connection con =  TecmisDB.getConnection();
-        Course course=new Course();
-        List<Course> list=course.list();
         
-        Auth auth = Auth.getInstance();
-        String usr = auth.getUsername();
+        StudentCourse course=new StudentCourse();
+        List<StudentCourse> list=course.list();
         
-        String q="select level from student where id='"+usr+"'";
-        PreparedStatement ps = con.prepareStatement(q);
-        PreparedStatement l=(PreparedStatement) ps.executeQuery(q);
-            System.out.println(l); 
-         
-         
         DefaultTableModel dt = (DefaultTableModel) coursetbl.getModel();
          dt.setRowCount(0);
-         for(Course rs:list)
+         for(StudentCourse rs:list)
          {
               String department_id=rs.getDepartmentID();
               String course_id =rs.getCourseID();
               String course_name=rs.getCourseName();
               int credit=rs.getCredit();
               String courseType=rs.getCourseType();
-              int level=rs.getLevel();
-             // if(userlevel==level)
-             // {
+              String level=rs.getLevel();
+           
               dt.addRow(new Object[]{course_id,course_name,credit,courseType});
-              //}
+            
         }
   
-        }catch(Exception e){
-                e.printStackTrace();
-                }
-
-    }
+     }
     
     
     public void LoadMarks()
@@ -736,7 +705,6 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
 
         jPanel8.setBackground(new java.awt.Color(0, 153, 153));
 
-        attenTbl.setBorder(javax.swing.BorderFactory.createBevelBorder(null));
         attenTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

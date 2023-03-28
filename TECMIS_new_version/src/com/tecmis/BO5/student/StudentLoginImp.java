@@ -5,7 +5,7 @@
 package com.tecmis.BO5.student;
 
 import com.tecmic.B05.TecmisDB.TecmisDB;
-import com.tecmic.B05.admin.AdminForm;
+import com.tecmic.B05.TecmisView.TechmisView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,35 +18,36 @@ import javax.swing.JOptionPane;
 public class StudentLoginImp extends StudentLogin{
 
     @Override
-    void Login(Student student) {
+    void Login(Student st) {
         try {
             Connection con =  TecmisDB.getConnection();
             String sql = "Select username, password from student where username=? and password=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, student.getUserName());
-            ps.setString(2, student.getPassword());
+            ps.setString(1, st.getUserName());
+            ps.setString(2, st.getPassword());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                
+              
             JOptionPane.showMessageDialog(null, "You have successfully logged in");
-            
-            Auth auth=Auth.getInstance();
-            auth.setUsername(student.getUserName());
-            
+                     
+                
+             Auth auth=Auth.getInstance();
+             auth.setUsername(st.getUserName());
+              
             new StudentView().setVisible(true);
-            
-            
-            
             
             }else{
              JOptionPane.showMessageDialog(null, "Wrong Username & Password");
+              new TechmisView().setVisible(true);
+             
             }
             
         } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error");
-
+            System.out.println(e);    
+                
         }
     }
+
+   
     
 }

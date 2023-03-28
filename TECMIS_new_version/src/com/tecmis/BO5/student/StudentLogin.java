@@ -9,5 +9,5 @@ package com.tecmis.BO5.student;
  * @author ACER
  */
 public abstract class StudentLogin {
-    abstract void Login(Student student);
+    abstract void Login(Student st);
 }
