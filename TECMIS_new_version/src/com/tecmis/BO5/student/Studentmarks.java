@@ -5,7 +5,6 @@
 package com.tecmis.BO5.student;
 
 import com.tecmic.B05.TecmisDB.TecmisDB;
-import com.tecmis.B05.notice.Notice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +23,8 @@ public class Studentmarks {
     private String level;
     private int assessment;
     private int quiz;
-    private int course_id;
+    private String course_id;
+    private String course_name;
     private int sgpa;
     private int cgpa;
     private int mid_term;
@@ -76,12 +76,21 @@ public class Studentmarks {
         this.quiz = quiz;
     }
 
-    public int getCourse_id() {
+    public String getCourse_id() {
         return course_id;
     }
 
-    public void setCourse_id(int course_id) {
+    public void setCourse_id(String course_id) {
         this.course_id = course_id;
+    }
+    
+    
+     public String getCourse_Name() {
+        return course_name;
+    }
+
+    public void setCourse_Name(String course_name) {
+        this.course_name = course_name;
     }
 
     public int getSgpa() {
@@ -145,26 +154,27 @@ public class Studentmarks {
        List<Studentmarks> list = new ArrayList<Studentmarks>();
         try {
             Connection con = TecmisDB.getConnection();
-            String sql = "SELECT * FROM mark where student_id='"+usr+"'";
+       
+            String sql = "SELECT mark.course_id,course.course_name,mark.grade FROM mark INNER JOIN course ON course.course_id=mark.course_id  where student_id='"+usr+"'";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
      
             while(rs.next()){
                 Studentmarks Stmark = new Studentmarks();
-                Stmark.setMark_id(rs.getInt("mark_id"));
+               // Stmark.setMark_id(rs.getInt("mark_id"));
                 Stmark.setGrade(rs.getString("grade"));
-                Stmark.setLevel(rs.getString("level")) ;
-                Stmark.setAssessment(rs.getInt("assesment")) ;
-                Stmark.setQuiz(rs.getInt("quiz")) ;
-                Stmark.setCourse_id(rs.getInt("course_id")) ;
-                Stmark.setSgpa(rs.getInt("sgpa")) ;
-                Stmark.setCgpa(rs.getInt("cgpa")) ;
-                Stmark.setMid_term(rs.getInt("mid_term")) ;
-                Stmark.setFinal_thoery(rs.getInt("final_theory")) ;
-                Stmark.setFinal_practical(rs.getInt("final_practicle")) ;
-                Stmark.setStudent_id(rs.getString("student_id")) ;
-                Stmark.setStudent_department_department_id(rs.getString("student_department_department_id")) ;
-                
+               // Stmark.setLevel(rs.getString("level")) ;
+              //  Stmark.setAssessment(rs.getInt("assesment")) ;
+               // Stmark.setQuiz(rs.getInt("quiz")) ;
+                Stmark.setCourse_id(rs.getString("course_id")) ;
+               // Stmark.setSgpa(rs.getInt("sgpa")) ;
+              //  Stmark.setCgpa(rs.getInt("cgpa")) ;
+              //  Stmark.setMid_term(rs.getInt("mid_term")) ;
+              //  Stmark.setFinal_thoery(rs.getInt("final_theory")) ;
+               // Stmark.setFinal_practical(rs.getInt("final_practicle")) ;
+              //  Stmark.setStudent_id(rs.getString("student_id")) ;
+               // Stmark.setStudent_department_department_id(rs.getString("student_department_department_id")) ;
+                 Stmark.setCourse_Name(rs.getString("course_name")) ;
                  list.add(Stmark);
           
             }

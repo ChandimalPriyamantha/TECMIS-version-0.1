@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
 public class Student extends User
 {
       
-    
-    public void EditProfile(Student student){
+   
+   /* public void EditProfile(Student student){
        String sql;
        PreparedStatement ps;
        try{
@@ -64,7 +64,7 @@ public class Student extends User
                
                JOptionPane.showMessageDialog(null, "Image Update Error!");
            }
-    }
+    }*/
     
     
 }

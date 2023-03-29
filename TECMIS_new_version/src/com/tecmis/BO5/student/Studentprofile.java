@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  */
 public class Studentprofile extends javax.swing.JInternalFrame {
 
-   String id;
+   
    
     public Studentprofile() {
         initComponents();
@@ -69,8 +69,13 @@ public class Studentprofile extends javax.swing.JInternalFrame {
     {
         try
         {
+            
+        Auth auth = Auth.getInstance();
+        String usr = auth.getUsername();    
+            
+            
         Connection con=TecmisDB.getConnection();
-        String sql="UPDATE student SET address=? ,phone_no=? ,email=? WHERE id='"+id+"'";
+        String sql="UPDATE student SET address=? ,phone_no=? ,email=? WHERE id='"+usr+"'";
         PreparedStatement ps=con.prepareStatement(sql);
         ps.setString(1,students.getAddress());
         ps.setString(2,students.getPhoneNumner());
@@ -78,8 +83,7 @@ public class Studentprofile extends javax.swing.JInternalFrame {
         ps.executeUpdate();
         
         JOptionPane.showMessageDialog(null,"Updated!");
-    }
-    catch(Exception e)
+    }catch(Exception e)
     {
         System.out.println(e);
     }
@@ -320,7 +324,7 @@ public class Studentprofile extends javax.swing.JInternalFrame {
         student.setPhoneNumner(txtmno.getText());
         student.setEmail(txtemail.getText());
         student.setImagePathe(lblimgpath.getText());
-        student.EditProfile(student);
+        profileUpdate(student);
 
         Load("student");
                  
