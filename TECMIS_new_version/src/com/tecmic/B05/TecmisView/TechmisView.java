@@ -10,6 +10,8 @@ import com.tecmic.B05.lecture.LectureLoginForm;
 import com.tecmic.B05.lecture.LectureView;
 
 import com.tecmic.B05.user.User;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -22,7 +24,9 @@ public class TechmisView extends javax.swing.JFrame {
      * Creates new form TechmisView
      */
     public TechmisView() {
-        initComponents();
+         initComponents();
+         Image icon = new ImageIcon(this.getClass().getResource("/Images/icons8-systems-64.png")).getImage();
+         this.setIconImage(icon);
     }
 
     /**
@@ -57,6 +61,7 @@ public class TechmisView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

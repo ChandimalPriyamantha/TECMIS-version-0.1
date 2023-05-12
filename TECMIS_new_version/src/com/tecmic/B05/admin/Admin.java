@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Base64;
 import javax.imageio.ImageIO;
 
 
@@ -314,6 +315,7 @@ public class Admin extends User{
             ps.setString(8, admin.getSex());
             ps.setString(9, admin.getPhoneNumner());
             ps.setString(10, admin.getUserName());
+            //String encodedString = Base64.getEncoder().encodeToString(admin.getPassword().getBytes());
             ps.setString(11, admin.getPassword());
             ps.setString(12, admin.getEmail());
             ps.setString(13, "E:\\Profile_pic\\Admin\\'"+admin.getUserID()+"'.png");

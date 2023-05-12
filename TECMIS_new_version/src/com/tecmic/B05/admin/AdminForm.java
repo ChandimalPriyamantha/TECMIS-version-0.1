@@ -58,6 +58,8 @@ public class AdminForm extends javax.swing.JFrame {
         btnTecDelete.setEnabled(false);
         btnCourseUpdate.setEnabled(false);
         btnCourseDelete.setEnabled(false);
+        Image icon = new ImageIcon(this.getClass().getResource("/Images/icons8-systems-64.png")).getImage();
+        this.setIconImage(icon);
     }
 
     /**
@@ -318,7 +320,7 @@ public class AdminForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
                 .addGap(16, 16, 16))
         );
         jPanel2Layout.setVerticalGroup(
@@ -559,10 +561,14 @@ public class AdminForm extends javax.swing.JFrame {
                             .addComponent(image_lbl6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel30Layout.createSequentialGroup()
                                 .addComponent(jButton51)
-                                .addGap(22, 22, 22)
                                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton36)
-                                    .addComponent(image_path3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(jPanel30Layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(image_path3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel30Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton36)))
+                                .addGap(4, 4, 4)))))
                 .addGap(24, 24, 24))
         );
         jPanel30Layout.setVerticalGroup(
@@ -1553,7 +1559,6 @@ public class AdminForm extends javax.swing.JFrame {
         });
 
         btnTecDelete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnTecDelete.setIcon(new javax.swing.ImageIcon("F:\\University Of Ruhuna\\lectur note\\Academic\\Lvel II -Semester - I\\OOP Praticum\\Activities\\Mini-Project\\Java_Project\\Images\\icons8-delete-document-30.png")); // NOI18N
         btnTecDelete.setText("Delete");
         btnTecDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1778,7 +1783,7 @@ public class AdminForm extends javax.swing.JFrame {
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1792,7 +1797,7 @@ public class AdminForm extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
