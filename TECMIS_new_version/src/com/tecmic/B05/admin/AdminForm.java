@@ -1541,7 +1541,7 @@ public class AdminForm extends javax.swing.JFrame {
         });
 
         btnTecUpdate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnTecUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-delete-document-30.png"))); // NOI18N
+        btnTecUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-available-updates-24.png"))); // NOI18N
         btnTecUpdate.setText("Update");
         btnTecUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1559,6 +1559,7 @@ public class AdminForm extends javax.swing.JFrame {
         });
 
         btnTecDelete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTecDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-delete-document-30.png"))); // NOI18N
         btnTecDelete.setText("Delete");
         btnTecDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1783,7 +1784,7 @@ public class AdminForm extends javax.swing.JFrame {
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
