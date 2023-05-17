@@ -14,11 +14,16 @@ import java.sql.DriverManager;
 public class TecmisDB {
     
     
-    static Connection con;
+    /*static Connection con;
     static String driver = "com.mysql.jdbc.Driver";
     static String url = "jdbc:mysql://localhost:3306/tecmis_db";
     static String uname = "root";
-    static String pass = "Csgs2413@";
+    static String pass = "Csgs2413@";*/
+    static Connection con;
+    static String driver = "com.mysql.jdbc.Driver";
+    static String url = "jdbc:mysql://sql12.freesqldatabase.com/sql12618259";
+    static String uname = "sql12618259";
+    static String pass = "Tq8SYVkni8";
     
     
     public static Connection getConnection()throws Exception{

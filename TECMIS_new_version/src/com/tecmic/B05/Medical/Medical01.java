@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.tecmic.B05.tecnicalOfficer;
+package com.tecmic.B05.Medical;
 
 /**
  *
  * @author ganidusahan
  */
 
-public class Medical {
+public class Medical01 {
     private int medical_id;
     private String date;
     private String state;

@@ -5,6 +5,9 @@
 package com.tecmic.B05.tecnicalOfficer;
 
 import com.tecmic.B05.user.User;
+import com.tecmic.B05.Medical.Medical01;
+import com.tecmic.B05.Medical.MedicalDAO;
+import com.tecmic.B05.Medical.MedicalDAOImp;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,7 +35,7 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
         initComponents();
         Load();
         Loadm();
-        //UserLoad("technical_officer");
+        UserLoad("technical_officer");
     }
     
     public void Load(){
@@ -56,10 +59,10 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
     }
     public void Loadm(){
         MedicalDAOImp dao = new MedicalDAOImp();
-        List<Medical> list = dao.list();
+        List<Medical01> list = dao.list();
         DefaultTableModel DFT =  (DefaultTableModel) tblmedical.getModel();
         DFT.setRowCount(0);
-        for(Medical med:list){
+        for(Medical01 med:list){
             int id = med.getMedical_id();
             String date = med.getDate();
             String state = med.getState();
@@ -196,6 +199,9 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         txtstatem = new javax.swing.JComboBox<>();
+        jLabel42 = new javax.swing.JLabel();
+        txtstidm1 = new javax.swing.JTextField();
+        btnupldmedi = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblmedical = new javax.swing.JTable();
@@ -739,29 +745,21 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
 
         txtstatem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Approved", "Not-Approved" }));
 
+        jLabel42.setText("Upload Medical");
+
+        btnupldmedi.setText("Upload");
+        btnupldmedi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupldmediActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel39)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel40, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtdatem)
-                            .addComponent(txtdidm)
-                            .addComponent(txtsubcodem)
-                            .addComponent(txtdescm)
-                            .addComponent(txtstidm)
-                            .addComponent(txtstatem, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton13)
@@ -770,8 +768,33 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton16)))
+                        .addComponent(jButton16))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel39)
+                                .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel40, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtstidm1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtdatem)
+                                .addComponent(txtdidm)
+                                .addComponent(txtsubcodem)
+                                .addComponent(txtdescm)
+                                .addComponent(txtstidm)
+                                .addComponent(txtstatem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnupldmedi)
+                .addGap(77, 77, 77))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -782,7 +805,7 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
                     .addComponent(jButton14)
                     .addComponent(jButton15)
                     .addComponent(jButton16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(txtdatem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -806,7 +829,13 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel37)
                     .addComponent(txtstidm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel42)
+                    .addComponent(txtstidm1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnupldmedi)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
@@ -837,16 +866,16 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(19, 19, 19)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jLabel31.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
@@ -870,13 +899,16 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel31)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("MEDICAL", new javax.swing.ImageIcon("/Users/ganidusahan/Desktop/ganidume/Java_Project/Images/TecnicalOfficer_Picture/icons8-doctors-folder-100.png"), jPanel5); // NOI18N
@@ -895,13 +927,14 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
         getAccessibleContext().setAccessibleDescription("");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        search = Integer.parseInt(JOptionPane.showInputDialog("Enter Student ID"));
+        search = Integer.parseInt(JOptionPane.showInputDialog("Enter Attendance ID"));
 
         MedicalDAOImp dao = new MedicalDAOImp();
-        Medical med = dao.get(search);
+        Medical01 med = dao.get(search);
 
         txtdatem.setText(med.getDate());
         txtstatem.setSelectedItem(med.getState());
@@ -913,7 +946,7 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
 
-        Medical med = new Medical();
+        Medical01 med = new Medical01();
         med.setMedical_id(search);
         MedicalDAOImp dao = new MedicalDAOImp();
         dao.delete(med);
@@ -931,7 +964,7 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        Medical med = new Medical();
+        Medical01 med = new Medical01();
 
         String date = txtdatem.getText();
         String state = txtstatem.getSelectedItem().toString();
@@ -964,7 +997,7 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
 
-        Medical med = new Medical();
+        Medical01 med = new Medical01();
 
         String date = txtdatem.getText();
         String state = txtstatem.getSelectedItem().toString();
@@ -1158,6 +1191,10 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
         n.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void btnupldmediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupldmediActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnupldmediActionPerformed
     int search;
     /**
      * @param args the command line arguments
@@ -1199,6 +1236,7 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
     private javax.swing.JTable attendencetbl;
     private javax.swing.JButton btnaddimg;
     private javax.swing.JButton btnupdate;
+    private javax.swing.JButton btnupldmedi;
     private javax.swing.JComboBox<String> combodptid;
     private javax.swing.JComboBox<String> combosex;
     private javax.swing.JLabel image_lbl;
@@ -1237,6 +1275,7 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1277,6 +1316,7 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> txtstatem;
     private javax.swing.JTextField txtstid;
     private javax.swing.JTextField txtstidm;
+    private javax.swing.JTextField txtstidm1;
     private javax.swing.JTextField txtsubcodem;
     private javax.swing.JComboBox<String> txttype;
     // End of variables declaration//GEN-END:variables

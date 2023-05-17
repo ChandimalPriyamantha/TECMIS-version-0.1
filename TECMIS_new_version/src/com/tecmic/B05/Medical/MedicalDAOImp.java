@@ -2,8 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.tecmic.B05.tecnicalOfficer;
-
+package com.tecmic.B05.Medical;
 import com.tecmic.B05.TecmisDB.TecmisDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +18,7 @@ import javax.swing.JOptionPane;
 public class MedicalDAOImp implements MedicalDAO{
     
     @Override
-    public void save(Medical medical) {
+    public void save(Medical01 medical) {
         
         try{
             
@@ -44,7 +43,7 @@ public class MedicalDAOImp implements MedicalDAO{
     }
 
     @Override
-    public void update(Medical medical) {
+    public void update(Medical01 medical) {
         
         try{
             
@@ -70,7 +69,7 @@ public class MedicalDAOImp implements MedicalDAO{
     }
 
     @Override
-    public void delete(Medical medical) {
+    public void delete(Medical01 medical) {
         try{
            Connection con = TecmisDB.getConnection();
            String sql = "DELETE FROM medical WHERE medical_id=?";
@@ -90,8 +89,8 @@ public class MedicalDAOImp implements MedicalDAO{
     }
 
     @Override
-    public Medical get(int medical_id) {
-        Medical med = new Medical();
+    public Medical01 get(int medical_id) {
+        Medical01 med = new Medical01();
         try{
            Connection con = TecmisDB.getConnection();
            String sql = "SELECT * FROM medical WHERE medical_id=?";
@@ -119,9 +118,9 @@ public class MedicalDAOImp implements MedicalDAO{
     }
 
     @Override
-    public List<Medical> list() {
+    public List<Medical01> list() {
         
-        List<Medical> list = new ArrayList<Medical>();
+        List<Medical01> list = new ArrayList<Medical01>();
         try{
            
            Connection con = TecmisDB.getConnection();
@@ -130,7 +129,7 @@ public class MedicalDAOImp implements MedicalDAO{
            ResultSet rs = ps.executeQuery();
            
            while(rs.next()){
-               Medical med = new Medical();
+               Medical01 med = new Medical01();
                med.setMedical_id(rs.getInt("medical_id"));
                med.setDate(rs.getString("date"));
                med.setState(rs.getString("state"));

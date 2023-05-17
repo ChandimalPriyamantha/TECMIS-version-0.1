@@ -8,6 +8,7 @@ import com.tecmic.B05.admin.AdminLogin;
 import com.tecmic.B05.admin.AdminLoginForm;
 import com.tecmic.B05.lecture.LectureLoginForm;
 import com.tecmic.B05.lecture.LectureView;
+import com.tecmic.B05.tecnicalOfficer.TecnicalOfficerLoginForm;
 
 import com.tecmic.B05.user.User;
 
@@ -347,7 +348,8 @@ public class TechmisView extends javax.swing.JFrame {
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
         // TODO add your handling code here:
-        
+        new TecnicalOfficerLoginForm().setVisible(true);
+        this.dispose();
         //new TecnicalOfficerLoginForm().setVisible(true);
     }//GEN-LAST:event_jPanel7MouseClicked
 
