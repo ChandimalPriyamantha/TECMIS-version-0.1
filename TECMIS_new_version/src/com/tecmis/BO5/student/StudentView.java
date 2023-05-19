@@ -6,6 +6,7 @@ package com.tecmis.BO5.student;
 
 import com.tecmic.B05.TecmisDB.TecmisDB;
 import java.awt.Desktop;
+import java.awt.Image;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,6 +35,7 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
         LoadMarks();
         LoadMedical ();
         LoadCourse();
+        
         
         
     }
@@ -1106,6 +1110,7 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTabbedPane1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTabbedPane1ComponentShown

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -29,6 +30,13 @@ public class Studentprofile extends javax.swing.JInternalFrame {
         initComponents();
         Load("student");
         
+           
+    }
+    public void scaleImage(){
+        Icon i = image_lbl.getIcon();
+        ImageIcon icon =new ImageIcon((Image) i);
+        Image image = icon.getImage().getScaledInstance(image_lbl.getWidth(), image_lbl.getHeight(), Image.SCALE_SMOOTH);
+        image_lbl.setIcon(new ImageIcon(image));
     }
     public void Load(String student){
 
@@ -40,6 +48,7 @@ public class Studentprofile extends javax.swing.JInternalFrame {
         String usr = auth.getUsername();
         
         user.get(usr,student);
+
         
         //image_lbl.setIcon(null);
         //image_lbl.setText("Set Profile Pic");
@@ -89,6 +98,7 @@ public class Studentprofile extends javax.swing.JInternalFrame {
         System.out.println(e);
     }
     }
+    
     
     
     
@@ -347,6 +357,8 @@ public class Studentprofile extends javax.swing.JInternalFrame {
         ImageIcon icon = new ImageIcon(filename);
         Image i = icon.getImage().getScaledInstance(image_lbl.getWidth(),image_lbl.getHeight(),Image.SCALE_SMOOTH);
         image_lbl.setIcon(icon);
+        //scaleImage();
+
     }//GEN-LAST:event_btnaddimgActionPerformed
 
     private void txtaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaddressActionPerformed
