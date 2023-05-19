@@ -73,13 +73,13 @@ public class CourseMaterials1 {
        try
        {
             Connection con = TecmisDB.getConnection();
-            String sql = "SELECT * FROM lecture_matireal";
+            String sql = "SELECT * FROM lecture_matireal ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
                            
              while(rs.next()){  
                CourseMaterials1 cm=new CourseMaterials1();
-               cm.setMaterial_ID(rs.getInt("	lecture_matireal_id"));
+               cm.setMaterial_ID(rs.getInt("lecture_matireal_id"));
                cm.setMaterial_name(rs.getString("name"));
                cm.setCoure_code(rs.getString("	course_id"));
                cm.setFilePath(rs.getString("file_path"));
@@ -99,34 +99,27 @@ public class CourseMaterials1 {
      
      
      
-        public  CourseMaterials1 get(String id) {
-        
+        public  String get(String name) {
+         
             CourseMaterials1 cm =new CourseMaterials1();
         try {
             Connection con = TecmisDB.getConnection();
-            String sql = "SELECT * FROM lecture_matireal WHERE course_id=?";
+            String sql = "SELECT file_path FROM lecture_matireal WHERE name=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                
-             
-               cm.setMaterial_ID(rs.getInt("Material_ID"));
-               cm.setCoure_code(rs.getString("course_code"));
-               cm.setFilePath(rs.getString("filePath"));
-                cm.setMaterial_ID(rs.getInt("lecture_matireal_id"));
-               cm.setMaterial_name(rs.getString("name"));
-               cm.setCoure_code(rs.getString("	course_id"));
-               cm.setFilePath(rs.getString("file_path"));
-               cm.setCourse_department_department_id(rs.getString("course_department_department_id "));
-               
+            if(rs.next()){  
+            cm.setFilePath(rs.getString("file_Path"));
             }
+          
             
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(null, "Error lading filepath");
         }
-        return cm;
+        String file=cm.getFilePath();
+        
+        return file;
     }
    
 }
