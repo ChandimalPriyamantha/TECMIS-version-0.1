@@ -75,11 +75,12 @@ public class Studentprofile extends javax.swing.JInternalFrame {
             
             
         Connection con=TecmisDB.getConnection();
-        String sql="UPDATE student SET address=? ,phone_no=? ,email=? WHERE id='"+usr+"'";
+        String sql="UPDATE student SET address=? ,phone_no=? ,email=?,image_path=? WHERE id='"+usr+"'";
         PreparedStatement ps=con.prepareStatement(sql);
         ps.setString(1,students.getAddress());
         ps.setString(2,students.getPhoneNumner());
         ps.setString(3,students.getEmail());
+        ps.setString(4,students.getImagePathe());
         ps.executeUpdate();
         
         JOptionPane.showMessageDialog(null,"Updated!");
