@@ -10,6 +10,7 @@ import com.tecmic.B05.TecmisView.TechmisView;
 import com.tecmic.B05.admin.Admin;
 import com.tecmic.B05.user.User;
 import com.tecmis.B05.notice.Notice;
+import com.tecmis.BO5.marks.Marks;
 import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -218,13 +219,42 @@ public class LectureView extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel33 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        LCourseID = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        LdepartmentID = new javax.swing.JComboBox<>();
+        LstudentName = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        Llevel = new javax.swing.JComboBox<>();
+        Lsemester = new javax.swing.JComboBox<>();
+        Lquize_01 = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        Lquize_02 = new javax.swing.JTextField();
+        Lquize_03 = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        Lquize_04 = new javax.swing.JTextField();
+        LmidTerm = new javax.swing.JTextField();
+        Lassignment_01 = new javax.swing.JTextField();
+        Lassighment_02 = new javax.swing.JTextField();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        Lpractical = new javax.swing.JTextField();
+        Ltheory = new javax.swing.JTextField();
         jPanel34 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnAdminSave1 = new javax.swing.JButton();
+        btnAdminUpload1 = new javax.swing.JButton();
+        btnAdminDelete1 = new javax.swing.JButton();
+        jButton53 = new javax.swing.JButton();
+        jButton54 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -1769,13 +1799,13 @@ public class LectureView extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Student ID", "Department ID", "Course ID", "Level", "Semester", "Quize 01", "Quize 02", "Quize 03", "Quize 04", "Mid term", "Assignment 01", "Assignment 02", "Final Practical", "Final Theory"
             }
         ));
         jScrollPane3.setViewportView(jTable1);
@@ -1801,15 +1831,219 @@ public class LectureView extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
         );
 
+        jLabel27.setText("Student ID:");
+
+        LCourseID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel28.setText("Department ID");
+
+        LdepartmentID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        LdepartmentID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        LstudentName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel29.setText("Course ID");
+
+        jLabel30.setText("Level");
+
+        jLabel31.setText("Semester");
+
+        jLabel32.setText("Quize 01");
+
+        Llevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Llevel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        Lsemester.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Lsemester.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        Lquize_01.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Lquize_01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Lquize_01ActionPerformed(evt);
+            }
+        });
+
+        jLabel33.setText("Quize 02");
+
+        jLabel34.setText("Quize 03");
+
+        jLabel35.setText("Quize 01");
+
+        Lquize_02.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        Lquize_03.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel36.setText("Quize 04");
+
+        jLabel37.setText("Mid term");
+
+        jLabel38.setText("Assignment 01");
+
+        jLabel39.setText("Assignment 02");
+
+        Lquize_04.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Lquize_04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Lquize_04ActionPerformed(evt);
+            }
+        });
+
+        LmidTerm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        LmidTerm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LmidTermActionPerformed(evt);
+            }
+        });
+
+        Lassignment_01.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Lassignment_01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Lassignment_01ActionPerformed(evt);
+            }
+        });
+
+        Lassighment_02.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Lassighment_02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Lassighment_02ActionPerformed(evt);
+            }
+        });
+
+        jLabel40.setText("Practical");
+
+        jLabel41.setText("Theory");
+
+        Lpractical.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Lpractical.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LpracticalActionPerformed(evt);
+            }
+        });
+
+        Ltheory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Ltheory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LtheoryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
         jPanel33Layout.setHorizontalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel33Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29)
+                    .addComponent(jLabel30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LCourseID, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LstudentName, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LdepartmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Llevel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel33Layout.createSequentialGroup()
+                        .addComponent(jLabel34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Lquize_03, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Lassighment_02, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                    .addGroup(jPanel33Layout.createSequentialGroup()
+                        .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel33Layout.createSequentialGroup()
+                                .addComponent(jLabel31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Lsemester, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel33Layout.createSequentialGroup()
+                                .addComponent(jLabel32)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Lquize_01)))
+                        .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel33Layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(jLabel35))
+                            .addGroup(jPanel33Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel37)
+                                    .addComponent(jLabel36))
+                                .addGap(44, 44, 44)
+                                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Lquize_04, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                                    .addComponent(LmidTerm)))))
+                    .addGroup(jPanel33Layout.createSequentialGroup()
+                        .addComponent(jLabel33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Lquize_02, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Lassignment_01)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel33Layout.createSequentialGroup()
+                        .addComponent(jLabel40)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Lpractical, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel33Layout.createSequentialGroup()
+                        .addComponent(jLabel41)
+                        .addGap(18, 18, 18)
+                        .addComponent(Ltheory, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel33Layout.setVerticalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 173, Short.MAX_VALUE)
+            .addGroup(jPanel33Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(LstudentName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31)
+                    .addComponent(Lsemester, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel36)
+                    .addComponent(Lquize_04, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel40)
+                    .addComponent(Lpractical, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Lquize_01, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32)
+                    .addComponent(LdepartmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel37)
+                    .addComponent(LmidTerm, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel41)
+                    .addComponent(Ltheory, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LCourseID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel33)
+                    .addComponent(Lquize_02, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel38)
+                    .addComponent(Lassignment_01, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel33Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Llevel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel30)
+                            .addComponent(jLabel34)
+                            .addComponent(Lquize_03, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel39))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel33Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Lassighment_02, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jLabel35)
+                .addGap(4, 4, 4))
         );
 
         jPanel34.setBackground(new java.awt.Color(0, 153, 153));
@@ -1835,15 +2069,50 @@ public class LectureView extends javax.swing.JFrame {
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        jButton1.setText("jButton1");
+        btnAdminSave1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAdminSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-save-30.png"))); // NOI18N
+        btnAdminSave1.setText("Save");
+        btnAdminSave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminSave1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton1");
+        btnAdminUpload1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAdminUpload1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-available-updates-24.png"))); // NOI18N
+        btnAdminUpload1.setText("Update");
+        btnAdminUpload1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminUpload1ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("jButton1");
+        btnAdminDelete1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAdminDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-delete-document-30.png"))); // NOI18N
+        btnAdminDelete1.setText("Delete");
+        btnAdminDelete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminDelete1ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("jButton1");
+        jButton53.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-search-30.png"))); // NOI18N
+        jButton53.setText("Search");
+        jButton53.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton53ActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("jButton1");
+        jButton54.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-clear-symbol-30.png"))); // NOI18N
+        jButton54.setText("Clear");
+        jButton54.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton54ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1853,19 +2122,19 @@ public class LectureView extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 207, Short.MAX_VALUE))
                     .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(btnAdminSave1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdminUpload1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdminDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton53, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton54, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -1875,15 +2144,15 @@ public class LectureView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 42, Short.MAX_VALUE))
+                    .addComponent(btnAdminSave1)
+                    .addComponent(btnAdminUpload1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdminDelete1)
+                    .addComponent(jButton53)
+                    .addComponent(jButton54))
+                .addGap(0, 31, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Upload Marks", jPanel6);
@@ -2604,6 +2873,77 @@ public class LectureView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton52ActionPerformed
 
+    private void btnAdminSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminSave1ActionPerformed
+      
+        Marks marks = new Marks();
+        
+        //ma.setLogingState("technical_officer");
+        
+        marks.setStudentID(LstudentName.getText());
+        marks.setDepartmentID(LdepartmentID.getSelectedItem().toString());
+        marks.setCourseID(LCourseID.getText());
+        marks.setLevel((Integer)Llevel.getSelectedItem());
+        marks.setSemester(Lsemester.getSelectedItem().toString());
+        marks.setQuize_01(Lquize_01.);
+        marks.setQuize_02(Lquize_02.getText());
+        marks.setQuize_03(Lquize_03.setText());
+        marks.setQuize_04(WIDTH);
+        
+        
+        
+
+    }//GEN-LAST:event_btnAdminSave1ActionPerformed
+
+    private void btnAdminUpload1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminUpload1ActionPerformed
+        
+    }//GEN-LAST:event_btnAdminUpload1ActionPerformed
+
+    private void btnAdminDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminDelete1ActionPerformed
+        // TODO add your handling code here:
+
+       
+    }//GEN-LAST:event_btnAdminDelete1ActionPerformed
+
+    private void jButton53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton53ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton53ActionPerformed
+
+    private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
+        // TODO add your handling code here:
+
+        
+
+    }//GEN-LAST:event_jButton54ActionPerformed
+
+    private void Lquize_01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lquize_01ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Lquize_01ActionPerformed
+
+    private void Lquize_04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lquize_04ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Lquize_04ActionPerformed
+
+    private void LmidTermActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LmidTermActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LmidTermActionPerformed
+
+    private void Lassignment_01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lassignment_01ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Lassignment_01ActionPerformed
+
+    private void Lassighment_02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lassighment_02ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Lassighment_02ActionPerformed
+
+    private void LpracticalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LpracticalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LpracticalActionPerformed
+
+    private void LtheoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LtheoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LtheoryActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2642,6 +2982,20 @@ public class LectureView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Download;
     private javax.swing.JButton Download1;
+    private javax.swing.JTextField LCourseID;
+    private javax.swing.JTextField Lassighment_02;
+    private javax.swing.JTextField Lassignment_01;
+    private javax.swing.JComboBox<String> LdepartmentID;
+    private javax.swing.JComboBox<String> Llevel;
+    private javax.swing.JTextField LmidTerm;
+    private javax.swing.JTextField Lpractical;
+    private javax.swing.JTextField Lquize_01;
+    private javax.swing.JTextField Lquize_02;
+    private javax.swing.JTextField Lquize_03;
+    private javax.swing.JTextField Lquize_04;
+    private javax.swing.JComboBox<String> Lsemester;
+    private javax.swing.JTextField LstudentName;
+    private javax.swing.JTextField Ltheory;
     private javax.swing.JButton Serch;
     private javax.swing.JButton Serch1;
     private javax.swing.JTextField User_FirstName1;
@@ -2656,8 +3010,11 @@ public class LectureView extends javax.swing.JFrame {
     private javax.swing.JTextField User_NIC2;
     private javax.swing.JTextArea body;
     private javax.swing.JButton btnAdminDelete;
+    private javax.swing.JButton btnAdminDelete1;
     private javax.swing.JButton btnAdminSave;
+    private javax.swing.JButton btnAdminSave1;
     private javax.swing.JButton btnAdminUpload;
+    private javax.swing.JButton btnAdminUpload1;
     private javax.swing.JButton btnLectureUpdate;
     private javax.swing.JButton btnLectureUpdate1;
     private javax.swing.JTextField date;
@@ -2669,20 +3026,17 @@ public class LectureView extends javax.swing.JFrame {
     private javax.swing.JLabel image_lbl6;
     private javax.swing.JLabel image_path1;
     private javax.swing.JLabel image_path2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton35;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton46;
     private javax.swing.JButton jButton47;
     private javax.swing.JButton jButton48;
     private javax.swing.JButton jButton49;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton50;
     private javax.swing.JButton jButton51;
     private javax.swing.JButton jButton52;
+    private javax.swing.JButton jButton53;
+    private javax.swing.JButton jButton54;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -2712,8 +3066,23 @@ public class LectureView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;

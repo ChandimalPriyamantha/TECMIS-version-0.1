@@ -6,8 +6,12 @@ package com.tecmic.B05.admin;
 
 import com.tecmic.B05.TecmisView.TechmisView;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Base64;
 import javax.swing.ImageIcon;
+import javax.swing.JProgressBar;
+import javax.swing.Timer;
 
 /**
  *
@@ -22,6 +26,7 @@ public class AdminLoginForm extends javax.swing.JFrame {
         initComponents();
         Image icon = new ImageIcon(this.getClass().getResource("/Images/icons8-systems-64.png")).getImage();
         this.setIconImage(icon);
+         jProgressBar1.setVisible(false);
     }  
 
     /**
@@ -38,6 +43,7 @@ public class AdminLoginForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -67,6 +73,8 @@ public class AdminLoginForm extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("University Of Ruhuna");
 
+        jProgressBar1.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -85,6 +93,7 @@ public class AdminLoginForm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))))
+            .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +106,8 @@ public class AdminLoginForm extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
@@ -228,8 +238,9 @@ public class AdminLoginForm extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        
+   
+    
+                
         
         Admin admin = new Admin();
         
@@ -241,13 +252,29 @@ public class AdminLoginForm extends javax.swing.JFrame {
         admin.setUserName(UserName);
         admin.setPassword(PassWord);
         
-        AdminLoginImp ad = new AdminLoginImp();
-        ad.Login(admin);
+         AdminLoginImp ad = new AdminLoginImp();
+         ad.Login(admin);
         
         txtUserName.setText("");
         txtPassword.setText("");
         
         this.dispose();
+       
+                             
+                             
+                            
+                             
+                   
+                    
+        
+        
+       
+        
+        
+        
+        //this.dispose();
+        
+    
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -300,6 +327,7 @@ public class AdminLoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
