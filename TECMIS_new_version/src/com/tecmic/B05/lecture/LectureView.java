@@ -2884,10 +2884,11 @@ public class LectureView extends javax.swing.JFrame {
         marks.setCourseID(LCourseID.getText());
         marks.setLevel((Integer)Llevel.getSelectedItem());
         marks.setSemester(Lsemester.getSelectedItem().toString());
-        marks.setQuize_01(Lquize_01.);
-        marks.setQuize_02(Lquize_02.getText());
-        marks.setQuize_03(Lquize_03.setText());
-        marks.setQuize_04(WIDTH);
+        marks.setQuize_01(Integer.parseInt(Lquize_01.getText()));
+        marks.setQuize_02(Integer.parseInt(Lquize_02.getText()));
+        marks.setQuize_03(Integer.parseInt(Lquize_03.getText()));
+        marks.setQuize_04(Integer.parseInt(Lquize_03.getText()));
+        
         
         
         
