@@ -96,8 +96,7 @@ public class CourseMaterials1 {
         return list;
     }
     
-     
-     
+ 
      
         public  String get(String name) {
          
