@@ -20,7 +20,7 @@ public class TecmisDB {
     static String uname = "root";
     static String pass = "1234";
     
-    
+    // 2023/05/25 commited
 //    static Connection con;
 //    static String driver = "com.mysql.jdbc.Driver";
 //    static String url = "jdbc:mysql://sql12.freesqldatabase.com/sql12618259";
