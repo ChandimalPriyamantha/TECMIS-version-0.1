@@ -23,7 +23,7 @@ public class Course {
     private String courseName;
     private int credit;
     private String courseType;
-    private int level;
+    private String level;
     private String departmentID;
 
     public String getDepartmentID() {
@@ -66,11 +66,11 @@ public class Course {
         this.courseType = courseType;
     }
 
-    public int getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(String level) {
         this.level = level;
     }
     
@@ -89,7 +89,7 @@ public class Course {
             while(rs.next()){
                 Course course= new Course();
                 course.setCourseID(rs.getString("course_id"));
-                course.setLevel(rs.getInt("level"));
+                course.setLevel(rs.getString("level"));
                 course.setCredit(rs.getInt("credit"));
                 course.setCourseName(rs.getString("course_name"));
                 course.setCourseType(rs.getString("course_type"));
@@ -119,7 +119,7 @@ public class Course {
             if(rs.next()){
                 
                 setCourseID(rs.getString("course_id"));
-                setLevel(rs.getInt("level"));
+                setLevel(rs.getString("level"));
                 setCredit(rs.getInt("credit"));
                 setCourseName(rs.getString("course_name"));
                 setCourseType(rs.getString("course_type"));

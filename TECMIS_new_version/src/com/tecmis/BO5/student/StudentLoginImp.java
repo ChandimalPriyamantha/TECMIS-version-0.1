@@ -21,7 +21,7 @@ public class StudentLoginImp extends StudentLogin{
     void Login(Student st) {
         try {
             Connection con =  TecmisDB.getConnection();
-            String sql = "Select username, password from student where username=? and password=?";
+            String sql = "Select id, password from student where id=? and password=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, st.getUserName());
             ps.setString(2, st.getPassword());
