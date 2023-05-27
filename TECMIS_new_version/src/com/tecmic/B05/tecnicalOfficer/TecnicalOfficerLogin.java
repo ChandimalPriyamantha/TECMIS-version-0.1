@@ -6,8 +6,9 @@ package com.tecmic.B05.tecnicalOfficer;
 
 /**
  *
- * @author Vivobook
+ * @author ganidusahan
  */
-public class TechnicalOfficer {
+public abstract class TecnicalOfficerLogin {
     
+    abstract void Login(TecnicalOfficer tecnicalOfficer);
 }
