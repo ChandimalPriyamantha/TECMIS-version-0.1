@@ -23,7 +23,7 @@ public class MedicalDAOImp implements MedicalDAO{
         try{
             
             Connection con = TecmisDB.getConnection();
-            String sql = "INSERT INTO medical(date,state,description,department_id,subject_code,student_id,file_path) VALUES (?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO medical(date,state,description,department_id,subject_code,student_id,file_path) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1,medical.getDate());
             ps.setString(2,medical.getState());
@@ -108,6 +108,7 @@ public class MedicalDAOImp implements MedicalDAO{
                med.setDepartment_id(rs.getString("department_id"));
                med.setSubject_code(rs.getString("subject_code"));
                med.setStudent_id(rs.getString("student_id"));
+               med.setMedidoc(rs.getString("file_path"));
                
            }
            
@@ -140,7 +141,7 @@ public class MedicalDAOImp implements MedicalDAO{
                med.setDepartment_id(rs.getString("department_id"));
                med.setSubject_code(rs.getString("subject_code"));
                med.setStudent_id(rs.getString("student_id"));
-               
+               med.setMedidoc(rs.getString("file_path"));
                
                list.add(med);
            }

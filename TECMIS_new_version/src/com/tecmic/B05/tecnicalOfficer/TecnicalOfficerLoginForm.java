@@ -134,6 +134,7 @@ public class TecnicalOfficerLoginForm extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/florid-student-studying-and-taking-notes.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

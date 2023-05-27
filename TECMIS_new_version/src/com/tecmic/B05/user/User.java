@@ -308,7 +308,7 @@ public  class User {
             
             while(rs.next()){
                 User user = new User();
-                System.out.println(rs.getString("id"));
+                //System.out.println(rs.getString("id"));
                 user.setUserID(rs.getString("id"));
                 user.setNIC(rs.getString("nic"));
                 user.setFirstName(rs.getString("fname"));
@@ -382,7 +382,7 @@ public  class User {
         }
         
         }else if(accessType == "lecture"){
-             System.out.println(id);
+             //System.out.println(id);
              try {
             Connection con = TecmisDB.getConnection();
             String sql = "SELECT * FROM lecturer WHERE id=?";

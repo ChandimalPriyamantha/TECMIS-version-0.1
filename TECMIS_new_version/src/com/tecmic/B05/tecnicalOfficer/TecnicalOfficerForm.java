@@ -244,36 +244,36 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(180, 180, 180)
                 .addComponent(jLabel2)
-                .addGap(102, 102, 102)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addContainerGap(238, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addGap(434, 434, 434))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addContainerGap(238, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addGap(67, 67, 67))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel5)))
-                .addGap(142, 142, 142)
+                .addGap(222, 222, 222)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel2))
                 .addGap(93, 93, 93))
         );
 
@@ -964,6 +964,7 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
         txtdidm.setText("");
         txtsubcodem.setText("");
         txtstidm.setText("");
+        txtstidm1.setText("");
 
         txtdatem.requestFocus();
     }//GEN-LAST:event_jButton15ActionPerformed
@@ -1022,7 +1023,9 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
         med.setDepartment_id(did);
         med.setSubject_code(subcode);
         med.setStudent_id(stid);
-        med.setMedidoc(medidoc);
+       // med.setMedidoc(medidoc);
+       med.setMedidoc(medidoc);
+       
 
         MedicalDAOImp dao = new MedicalDAOImp();
         dao.save(med);
@@ -1167,7 +1170,7 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
         String filename = image.getAbsolutePath();
 
         image_lbl.setText(filename);
-        System.out.println(image_lbl);
+        //System.out.println(image_lbl);
         ImageIcon icon = new ImageIcon(filename);
         //Image i = icon.getImage().getScaledInstance(image_lbl.getWidth(),image_lbl.getHeight(),Image.SCALE_SMOOTH);
         image_lbl.setIcon(icon);

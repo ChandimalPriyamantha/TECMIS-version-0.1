@@ -232,6 +232,7 @@ public class NoticeForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -244,7 +245,7 @@ public class NoticeForm extends javax.swing.JFrame {
 
     private void btndownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndownloadActionPerformed
         Notice notice = new  Notice();
-        System.out.println(notice.getFilePath());
+        //System.out.println(notice.getFilePath());
         
         if(file_path.getText()!= "File Path"){
             
