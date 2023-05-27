@@ -6,6 +6,7 @@ package com.tecmis.B05.course;
 
 import com.tecmic.B05.TecmisDB.TecmisDB;
 import com.tecmis.B05.notice.Notice;
+import com.tecmis.BO5.marks.Marks;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -134,5 +135,8 @@ public class Course {
         }
         return course;
     }
+      
+      
+
    
 }

@@ -3215,8 +3215,8 @@ public class AdminForm extends javax.swing.JFrame {
         
         
         
-         admin.CreatUser(admin);
-         UserLoad("Admin"); 
+        admin.CreatUser(admin);
+        UserLoad("Admin"); 
         
         image_lbl6.setIcon(null);
         image_lbl6.setText("Set Profile Pic");

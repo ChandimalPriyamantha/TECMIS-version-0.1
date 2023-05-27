@@ -2182,7 +2182,7 @@ public class LectureView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -2888,6 +2888,17 @@ public class LectureView extends javax.swing.JFrame {
         marks.setQuize_02(Integer.parseInt(Lquize_02.getText()));
         marks.setQuize_03(Integer.parseInt(Lquize_03.getText()));
         marks.setQuize_04(Integer.parseInt(Lquize_03.getText()));
+        marks.setMidterm(Integer.parseInt(LmidTerm.getText()));
+        marks.setAssesment_01(Integer.parseInt(Lassignment_01.getText()));
+        marks.setAssesment_02(Integer.parseInt(Lassighment_02.getText()));
+        marks.setFinalPracticle(Integer.parseInt(Lpractical.getText()));
+        marks.setFinalTheory(Integer.parseInt(Ltheory.getText()));
+        
+        marks.InsertMarks(marks);
+        
+        
+        
+        
         
         
         

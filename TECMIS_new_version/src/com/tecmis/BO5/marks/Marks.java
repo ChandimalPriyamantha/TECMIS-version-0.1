@@ -224,6 +224,37 @@ public class Marks {
         }
         return marks;
     }
+      
+      
+       public void InsertMarks(Marks marks){
+       
+       try {
+            Connection con =  TecmisDB.getConnection();
+            String sql = "INSERT INTO mark(student_id,student_department_department_id,course_id,level,semester ,Quiz_01,Quiz_02,Quiz_03,Quiz_04,Mid_term,Assignment_01,Assignment_02,final_practical,final_theory) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setString(1, marks.getStudentID());
+            ps.setString(2, marks.getDepartmentID());
+            ps.setString(3, marks.getCourseID());
+            ps.setInt(4, marks.getLevel());
+            ps.setString(5, marks.getSemester());
+            ps.setInt(6, marks.getQuize_01());
+            ps.setInt(7, marks.getQuize_02());
+            ps.setInt(8, marks.getQuize_03());
+            ps.setInt(9, marks.getQuize_04());
+            ps.setInt(10, marks.getMidterm());
+            ps.setInt(11, marks.getAssesment_01());
+            ps.setInt(12, marks.getAssesment_02());
+            ps.setInt(13, marks.getFinalPracticle());
+            ps.setInt(14, marks.getFinalTheory());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Saved!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+   
+   }
     
     
     
