@@ -24,7 +24,7 @@ public class TecnicalOfficer extends User {
        PreparedStatement ps;
        try{
        Connection con =  TecmisDB.getConnection();
-            sql = "UPDATE technical_officer SET id=?,nic=?,fname=?,mname=?,lname=?,birth_date=?,address=?,sex=?,phone_no=?,username=?,password=?,email=?,image_path=?,department_department_id=? WHERE id=?";
+            sql = "UPDATE technical_officer SET id=?,nic=?,fname=?,mname=?,lname=?,birth_date=?,address=?,sex=?,phone_no=?,email=?,image_path=?,department_department_id=? WHERE id=?";
             
             ps = con.prepareStatement(sql);
             
@@ -37,18 +37,18 @@ public class TecnicalOfficer extends User {
             ps.setString(7, tecnicalofficer.getAddress());
             ps.setString(8, tecnicalofficer.getSex());
             ps.setString(9, tecnicalofficer.getPhoneNumner());
-            ps.setString(10, tecnicalofficer.getUserName());
-            ps.setString(11, tecnicalofficer.getPassword());
-            ps.setString(12, tecnicalofficer.getEmail());
-            ps.setString(13, "E:\\Profile_pic\\TechnicalOfficer\\'"+tecnicalofficer.getUserID()+"'.png");
-            ps.setString(14, tecnicalofficer.getDepartmentID());
-            ps.setString(15, tecnicalofficer.getUserID());
+            //ps.setString(10, tecnicalofficer.getUserName());
+            //ps.setString(11, tecnicalofficer.getPassword());
+            ps.setString(10, tecnicalofficer.getEmail());
+            ps.setString(11, "E:\\Profile_pic\\TechnicalOfficer\\'"+tecnicalofficer.getUserID()+"'.png");
+            ps.setString(12, tecnicalofficer.getDepartmentID());
+            ps.setString(13, tecnicalofficer.getUserID());
             ps.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Updated!");
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(null, "Error-updateding-profile");
         }
        
        try{

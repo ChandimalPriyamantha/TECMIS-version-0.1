@@ -23,7 +23,7 @@ public class MedicalDAOImp implements MedicalDAO{
         try{
             
             Connection con = TecmisDB.getConnection();
-            String sql = "INSERT INTO medical(date,state,description,department_id,subject_code,student_id) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO medical(date,state,description,department_id,subject_code,student_id,file_path) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1,medical.getDate());
             ps.setString(2,medical.getState());
@@ -31,6 +31,7 @@ public class MedicalDAOImp implements MedicalDAO{
             ps.setString(4,medical.getDepartment_id());
             ps.setString(5,medical.getSubject_code());
             ps.setString(6,medical.getStudent_id());
+            ps.setString(7,medical.getMedidoc());
             
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "SAVED!");
@@ -48,7 +49,7 @@ public class MedicalDAOImp implements MedicalDAO{
         try{
             
            Connection con = TecmisDB.getConnection();
-           String sql = "UPDATE medical SET date=?,state=?,description=?,department_id=?,subject_code=?,student_id=? WHERE medical_id=?";
+           String sql = "UPDATE medical SET date=?,state=?,description=?,department_id=?,subject_code=?,student_id=?,file_path=? WHERE medical_id=?";
            PreparedStatement ps = con.prepareStatement(sql);
            ps.setString(1,medical.getDate());
            ps.setString(2,medical.getState());
@@ -56,6 +57,8 @@ public class MedicalDAOImp implements MedicalDAO{
            ps.setString(4,medical.getDepartment_id());
            ps.setString(5,medical.getSubject_code());
            ps.setString(6,medical.getStudent_id());
+           ps.setString(7,medical.getMedidoc());
+           ps.setInt(8,medical.getMedical_id());
            ps.executeUpdate();
            
            
@@ -137,6 +140,7 @@ public class MedicalDAOImp implements MedicalDAO{
                med.setDepartment_id(rs.getString("department_id"));
                med.setSubject_code(rs.getString("subject_code"));
                med.setStudent_id(rs.getString("student_id"));
+               
                
                list.add(med);
            }

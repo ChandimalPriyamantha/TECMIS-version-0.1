@@ -32,6 +32,7 @@ public class AttendanceDAOImp implements AttendanceDAO{
             ps.setString(5,attendence.getLecturer_id());
             ps.setInt(6, attendence.getHour());
             ps.setString(7,attendence.getStudent_id());
+            //ps.setString(8,attendence.getStudent_id());
             
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "SAVED!");
@@ -57,6 +58,8 @@ public class AttendanceDAOImp implements AttendanceDAO{
            ps.setString(5,attendence.getLecturer_id());
            ps.setInt(6, attendence.getHour());
            ps.setString(7,attendence.getStudent_id());
+           //ps.setString(8,attendence.getStudent_id());
+           ps.setInt(8, attendence.getAttendance_id());
            ps.executeUpdate();
            
            

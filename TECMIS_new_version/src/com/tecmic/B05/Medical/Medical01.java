@@ -17,6 +17,7 @@ public class Medical01 {
     private String department_id;
     private String subject_code;
     private String student_id;
+    private String medidoc;
 
     public int getMedical_id() {
         return medical_id;
@@ -72,6 +73,14 @@ public class Medical01 {
 
     public void setStudent_id(String student_id) {
         this.student_id = student_id;
+    }
+
+    public String getMedidoc() {
+        return medidoc;
+    }
+
+    public void setMedidoc(String medidoc) {
+        this.medidoc = medidoc;
     }
     
 
