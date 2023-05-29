@@ -316,7 +316,7 @@ public class AdminForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("ADMIN");
+        jLabel1.setText("ADMIN HOME");
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-back-arrow-50.png"))); // NOI18N
         jLabel17.setText("jLabel17");
@@ -341,8 +341,8 @@ public class AdminForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(16, 16, 16))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3254,7 +3254,9 @@ public class AdminForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         Admin admin = new Admin();
         
-        admin.setLogingState("admin");
+        //admin.setLogingState("admin");
+        
+        
         
         admin.setUserID(User_ID3.getText());
         admin.setNIC(User_NIC3.getText());

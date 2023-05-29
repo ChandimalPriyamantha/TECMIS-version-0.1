@@ -35,7 +35,7 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
         initComponents();
         Load();
         Loadm();
-        //UserLoad("technical_officer");
+        UserLoad("technical_officer");
     }
     
     public void Load(){

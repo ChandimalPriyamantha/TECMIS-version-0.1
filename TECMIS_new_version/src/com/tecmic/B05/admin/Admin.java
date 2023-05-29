@@ -186,10 +186,10 @@ public class Admin extends User{
             
            
             
-            JOptionPane.showMessageDialog(null, "Saved!");
+            JOptionPane.showMessageDialog(null, "Successfully Saved..!");
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(null, "Connection Error");
         }
        
        try{
@@ -200,7 +200,7 @@ public class Admin extends User{
                
            }catch(Exception e){
                
-               JOptionPane.showMessageDialog(null, "Image Update Error!");
+               JOptionPane.showMessageDialog(null, "Image Upload Error!");
            }
       
        }else if(admin.getLogingState() == "lecture"){

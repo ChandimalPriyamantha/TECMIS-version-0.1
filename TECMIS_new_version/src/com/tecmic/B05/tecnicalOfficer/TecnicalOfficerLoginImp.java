@@ -20,9 +20,9 @@ public class TecnicalOfficerLoginImp extends TecnicalOfficerLogin{
         try{
             
             Connection con =  TecmisDB.getConnection();
-            String sql = "Select username, password from technical_officer where username=? and password=?";
+            String sql = "Select id, password from technical_officer where id=? and password=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, tecnicalOfficer.getUserName());
+            ps.setString(1, tecnicalOfficer.getUserID());
             ps.setString(2, tecnicalOfficer.getPassword());
             ResultSet rs = ps.executeQuery();
             
@@ -30,7 +30,7 @@ public class TecnicalOfficerLoginImp extends TecnicalOfficerLogin{
                 JOptionPane.showMessageDialog(null, "You have successfully logged in");
                 
                 Auth auth = Auth.getInstance();
-                auth.setUsername(tecnicalOfficer.getUserName());
+                auth.setUsername(tecnicalOfficer.getUserID());
                 
                 new TecnicalOfficerForm().setVisible(true);
             }

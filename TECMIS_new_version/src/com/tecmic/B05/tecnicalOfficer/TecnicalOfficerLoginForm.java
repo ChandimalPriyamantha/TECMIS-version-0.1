@@ -214,7 +214,7 @@ public class TecnicalOfficerLoginForm extends javax.swing.JFrame {
         String UserName = txtUserName.getText();
         String PassWord = txtPassword.getText();
 
-        tecof.setUserName(UserName);
+        tecof.setUserID(UserName);
         tecof.setPassword(PassWord);
 
         TecnicalOfficerLoginImp ad = new TecnicalOfficerLoginImp();
@@ -222,6 +222,8 @@ public class TecnicalOfficerLoginForm extends javax.swing.JFrame {
 
         txtUserName.setText("");
         txtPassword.setText("");
+        
+        this.Dispose();
         
     
     }//GEN-LAST:event_jButton1ActionPerformed
