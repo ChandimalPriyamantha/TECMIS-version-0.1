@@ -30,7 +30,7 @@ public class Marks {
     private int finalTheory;
     private int finalPracticle;
     private int midterm;
-    private int level;
+    private String level;
     private String semester;
     private String studentID;
 
@@ -114,11 +114,11 @@ public class Marks {
         this.midterm = midterm;
     }
 
-    public int getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 
@@ -165,7 +165,7 @@ public class Marks {
                 marks.setStudentID(rs.getString("student_id"));
                 marks.setDepartmentID(rs.getString("student_department_department_id"));
                 marks.setCourseID(rs.getString("course_id"));
-                marks.setLevel(rs.getInt("level"));
+                marks.setLevel(rs.getString("level"));
                 marks.setSemester(rs.getString("semester"));
                 marks.setQuize_01(rs.getInt("Quiz_01"));
                 marks.setQuize_02(rs.getInt("Quiz_02"));
@@ -190,21 +190,22 @@ public class Marks {
     
     }
     
-      public Marks get(int id) {
+      public Marks get(String sid, String cid) {
          Marks marks = new Marks();
         try {
             
             Connection con = TecmisDB.getConnection();
-            String sql = "SELECT * FROM notice WHERE notice_id=?";
+            String sql = "SELECT * FROM mark WHERE student_id=? AND course_id=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setString(1, sid);
+            ps.setString(2, cid);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 
                 setStudentID(rs.getString("student_id"));
                 setDepartmentID(rs.getString("student_department_department_id"));
                 setCourseID(rs.getString("course_id"));
-                setLevel(rs.getInt("level"));
+                setLevel(rs.getString("level"));
                 setSemester(rs.getString("semester"));
                 setQuize_01(rs.getInt("Quiz_01"));
                 setQuize_02(rs.getInt("Quiz_02"));
@@ -236,7 +237,7 @@ public class Marks {
             ps.setString(1, marks.getStudentID());
             ps.setString(2, marks.getDepartmentID());
             ps.setString(3, marks.getCourseID());
-            ps.setInt(4, marks.getLevel());
+            ps.setString(4, marks.getLevel());
             ps.setString(5, marks.getSemester());
             ps.setInt(6, marks.getQuize_01());
             ps.setInt(7, marks.getQuize_02());
@@ -255,7 +256,58 @@ public class Marks {
         }
    
    }
+       
+       
+       
+       public void UpdateMarks(Marks marks){
+       
+       try {
+            Connection con =  TecmisDB.getConnection();
+            String sql = "UPDATE  mark SET student_id=?,student_department_department_id=?,course_id=?,level=?,semester=? ,Quiz_01=?,Quiz_02=?,Quiz_03=?,Quiz_04=?,Mid_term=?,Assignment_01=?,Assignment_02=?,final_practical=?,final_theory=? WHERE student_id=? AND course_id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setString(1, marks.getStudentID());
+            ps.setString(2, marks.getDepartmentID());
+            ps.setString(3, marks.getCourseID());
+            ps.setString(4, marks.getLevel());
+            ps.setString(5, marks.getSemester());
+            ps.setInt(6, marks.getQuize_01());
+            ps.setInt(7, marks.getQuize_02());
+            ps.setInt(8, marks.getQuize_03());
+            ps.setInt(9, marks.getQuize_04());
+            ps.setInt(10, marks.getMidterm());
+            ps.setInt(11, marks.getAssesment_01());
+            ps.setInt(12, marks.getAssesment_02());
+            ps.setInt(13, marks.getFinalPracticle());
+            ps.setInt(14, marks.getFinalTheory());
+            ps.setString(15, marks.getStudentID());
+             ps.setString(16, marks.getCourseID());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Updated!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+   
+   }
     
+   public void markDelete(){
+    
+       try {
+          
+            Connection con = TecmisDB.getConnection();
+            String sql = "delete from mark  WHERE  student_id=? AND course_id=? ";
+            PreparedStatement ps = con.prepareStatement(sql);  
+            ps.setString(1, getStudentID());
+            ps.setString(2, getCourseID());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Deleted!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+   
+   }
     
     
 }
