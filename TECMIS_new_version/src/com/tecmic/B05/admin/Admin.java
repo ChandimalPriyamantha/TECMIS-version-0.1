@@ -94,7 +94,7 @@ public class Admin extends User{
             PreparedStatement ps = con.prepareStatement(sql);
             
             ps.setString(1, course.getCourseID());
-            ps.setInt(2, course.getLevel());
+            ps.setString(2, course.getLevel());
             ps.setInt(3, course.getCredit());
             ps.setString(4, course.getCourseName());
             ps.setString(5, course.getCourseType());
@@ -117,7 +117,7 @@ public class Admin extends User{
             PreparedStatement ps = con.prepareStatement(sql);
             
             ps.setString(1, course.getCourseID());
-            ps.setInt(2, course.getLevel());
+            ps.setString(2, course.getLevel());
             ps.setInt(3, course.getCredit());
             ps.setString(4, course.getCourseName());
             ps.setString(5, course.getCourseType());

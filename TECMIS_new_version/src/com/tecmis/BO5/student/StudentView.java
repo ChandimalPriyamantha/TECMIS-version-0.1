@@ -91,7 +91,7 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
   
      }
     
-    public void LoadCourseMaterial(String course) 
+    public void LoadCourse(String course) 
     {
            
         
@@ -1165,7 +1165,7 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
 
     private void cmsubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmsubActionPerformed
      String sub= (String) cmsub.getSelectedItem();
-     LoadCourseMaterial(sub);
+     LoadCourse(sub);
      // TODO add your handling code here:
     }//GEN-LAST:event_cmsubActionPerformed
 
