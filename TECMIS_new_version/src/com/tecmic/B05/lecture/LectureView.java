@@ -10,7 +10,10 @@ import com.tecmic.B05.TecmisView.TechmisView;
 import com.tecmic.B05.admin.Admin;
 import com.tecmic.B05.user.User;
 import com.tecmis.B05.notice.Notice;
+import com.tecmis.BO5.marks.GPA;
+import com.tecmis.BO5.marks.Grade;
 import com.tecmis.BO5.marks.Marks;
+import com.tecmis.BO5.student.Student;
 import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -19,6 +22,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.LinkedList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -48,6 +52,16 @@ public class LectureView extends javax.swing.JFrame {
         MedicalLoad();
         Download1.setEnabled(false);
         MarksLoder();
+        btn_marks_save.setEnabled(false);
+        btn_marks_upload.setEnabled(false);
+        btn_marks_delete.setEnabled(false);
+        btn_marks_search.setEnabled(false);
+        btn_marks_search.setEnabled(false);
+        btn_marks_clear.setEnabled(false);
+        filedEditable();
+        CalculateGPA();
+        CalculateGPA_MAIN();
+       
     }
 
     /**
@@ -169,20 +183,26 @@ public class LectureView extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jPanel35 = new javax.swing.JPanel();
+        jLabel51 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        gpa_table = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        GradeTable_01 = new javax.swing.JTable();
         jPanel36 = new javax.swing.JPanel();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jLabel50 = new javax.swing.JLabel();
+        Gstudent_id = new javax.swing.JLabel();
+        GSemester = new javax.swing.JLabel();
+        GDepartment_id = new javax.swing.JLabel();
+        sgpa = new javax.swing.JLabel();
+        GLevel = new javax.swing.JLabel();
+        cgpa = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel48 = new javax.swing.JLabel();
+        Gstudent_name = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        GradeTable_02 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
@@ -263,14 +283,17 @@ public class LectureView extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         Lpractical = new javax.swing.JTextField();
+        MType = new javax.swing.JComboBox<>();
         Ltheory = new javax.swing.JTextField();
+        jLabel49 = new javax.swing.JLabel();
         jPanel34 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
-        btnAdminSave1 = new javax.swing.JButton();
-        btnAdminUpload1 = new javax.swing.JButton();
-        btnAdminDelete1 = new javax.swing.JButton();
-        jButton53 = new javax.swing.JButton();
-        jButton54 = new javax.swing.JButton();
+        btn_marks_save = new javax.swing.JButton();
+        btn_marks_upload = new javax.swing.JButton();
+        btn_marks_delete = new javax.swing.JButton();
+        btn_marks_search = new javax.swing.JButton();
+        btn_marks_clear = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -1042,7 +1065,7 @@ public class LectureView extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1298,7 +1321,7 @@ public class LectureView extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1314,7 +1337,7 @@ public class LectureView extends javax.swing.JFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1105, Short.MAX_VALUE)
+            .addGap(0, 1117, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1327,18 +1350,27 @@ public class LectureView extends javax.swing.JFrame {
 
         jPanel35.setBackground(new java.awt.Color(0, 153, 153));
 
+        jLabel51.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel51.setText("Student Grade");
+
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
         jPanel35.setLayout(jPanel35Layout);
         jPanel35Layout.setHorizontalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel35Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel35Layout.setVerticalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
+            .addGroup(jPanel35Layout.createSequentialGroup()
+                .addComponent(jLabel51)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        gpa_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -1349,9 +1381,9 @@ public class LectureView extends javax.swing.JFrame {
                 "Student ID", "Department ID", "Level", "Semester", "SGPA", "CGPA"
             }
         ));
-        jScrollPane4.setViewportView(jTable2);
+        jScrollPane4.setViewportView(gpa_table);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        GradeTable_01.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -1362,87 +1394,141 @@ public class LectureView extends javax.swing.JFrame {
                 "Course ID", "Grade"
             }
         ));
-        jScrollPane5.setViewportView(jTable3);
+        jScrollPane5.setViewportView(GradeTable_01);
 
         jPanel36.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel50.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel50.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel50.setText("Student GPA Table");
 
         javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
         jPanel36.setLayout(jPanel36Layout);
         jPanel36Layout.setHorizontalGroup(
             jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel36Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel36Layout.setVerticalGroup(
             jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
+            .addGroup(jPanel36Layout.createSequentialGroup()
+                .addComponent(jLabel50)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
-        jLabel42.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel42.setText("Student's ID");
-        jLabel42.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Gstudent_id.setBackground(new java.awt.Color(255, 255, 255));
+        Gstudent_id.setText("Student's ID");
+        Gstudent_id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel43.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel43.setText("Semester");
-        jLabel43.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        GSemester.setBackground(new java.awt.Color(255, 255, 255));
+        GSemester.setText("Semester");
+        GSemester.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel44.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel44.setText("Department ID");
-        jLabel44.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        GDepartment_id.setBackground(new java.awt.Color(255, 255, 255));
+        GDepartment_id.setText("Department ID");
+        GDepartment_id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel45.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel45.setText("SGPA");
-        jLabel45.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        sgpa.setBackground(new java.awt.Color(255, 255, 255));
+        sgpa.setText("SGPA");
+        sgpa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel46.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel46.setText("Level");
-        jLabel46.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        GLevel.setBackground(new java.awt.Color(255, 255, 255));
+        GLevel.setText("Level");
+        GLevel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel47.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel47.setText("CGPA");
-        jLabel47.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cgpa.setBackground(new java.awt.Color(255, 255, 255));
+        cgpa.setText("CGPA");
+        cgpa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextField4.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField4.setText("Enter Student's ID");
-        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-search-30.png"))); // NOI18N
+        jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setText("Search");
+        Gstudent_name.setBackground(new java.awt.Color(255, 255, 255));
+        Gstudent_name.setText("Student's Name");
+        Gstudent_name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel48.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel48.setText("Student's Name");
-        jLabel48.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        GradeTable_02.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Student ID", "Course ID", "Department ID", "Grade PV", "Grade"
+            }
+        ));
+        jScrollPane6.setViewportView(GradeTable_02);
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-print-30.png"))); // NOI18N
+        jButton3.setText("Print Grade");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-print-30.png"))); // NOI18N
+        jButton4.setText("Print GPA");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-clear-symbol-30.png"))); // NOI18N
+        jButton5.setText("Clear");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel36, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane4)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1117, Short.MAX_VALUE)
             .addComponent(jPanel35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Gstudent_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(GDepartment_id, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                            .addComponent(GLevel, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                            .addComponent(Gstudent_name, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+                        .addComponent(GSemester, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                            .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                            .addComponent(jTextField4)
-                            .addComponent(jLabel48, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                            .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                            .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sgpa, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(cgpa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1453,39 +1539,45 @@ public class LectureView extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Gstudent_id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sgpa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(GDepartment_id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cgpa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addComponent(GLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Gstudent_name, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(GSemester, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton1)
+                                    .addComponent(jButton5)))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4)
+                            .addComponent(jButton3))))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Student Marks & GPA", jPanel14);
+        jTabbedPane1.addTab("Marks & GPA", new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-gpa-calculator-24.png")), jPanel14); // NOI18N
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1105, Short.MAX_VALUE)
+            .addGap(0, 1117, Short.MAX_VALUE)
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1679,7 +1771,7 @@ public class LectureView extends javax.swing.JFrame {
         jPanel21Layout.setHorizontalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel22, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1883,7 +1975,7 @@ public class LectureView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1093, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1105, Short.MAX_VALUE)
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2089,12 +2181,17 @@ public class LectureView extends javax.swing.JFrame {
             }
         });
 
+        MType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
+        MType.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         Ltheory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Ltheory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LtheoryActionPerformed(evt);
             }
         });
+
+        jLabel49.setText("Type");
 
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
@@ -2161,10 +2258,14 @@ public class LectureView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Lpractical, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel33Layout.createSequentialGroup()
-                        .addComponent(jLabel41)
+                        .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel41)
+                            .addComponent(jLabel49))
                         .addGap(18, 18, 18)
-                        .addComponent(Ltheory, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(MType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Ltheory, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel33Layout.setVerticalGroup(
             jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2196,7 +2297,9 @@ public class LectureView extends javax.swing.JFrame {
                     .addComponent(jLabel33)
                     .addComponent(Lquize_02, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel38)
-                    .addComponent(Lassignment_01, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Lassignment_01, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MType, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel49))
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel33Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -2212,7 +2315,7 @@ public class LectureView extends javax.swing.JFrame {
                         .addComponent(Lassighment_02, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jLabel35)
-                .addGap(4, 4, 4))
+                .addContainerGap())
         );
 
         jPanel34.setBackground(new java.awt.Color(0, 153, 153));
@@ -2238,48 +2341,56 @@ public class LectureView extends javax.swing.JFrame {
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        btnAdminSave1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAdminSave1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-save-30.png"))); // NOI18N
-        btnAdminSave1.setText("Save");
-        btnAdminSave1.addActionListener(new java.awt.event.ActionListener() {
+        btn_marks_save.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_marks_save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-save-30.png"))); // NOI18N
+        btn_marks_save.setText("Save");
+        btn_marks_save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminSave1ActionPerformed(evt);
+                btn_marks_saveActionPerformed(evt);
             }
         });
 
-        btnAdminUpload1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAdminUpload1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-available-updates-24.png"))); // NOI18N
-        btnAdminUpload1.setText("Update");
-        btnAdminUpload1.addActionListener(new java.awt.event.ActionListener() {
+        btn_marks_upload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_marks_upload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-available-updates-24.png"))); // NOI18N
+        btn_marks_upload.setText("Update");
+        btn_marks_upload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminUpload1ActionPerformed(evt);
+                btn_marks_uploadActionPerformed(evt);
             }
         });
 
-        btnAdminDelete1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAdminDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-delete-document-30.png"))); // NOI18N
-        btnAdminDelete1.setText("Delete");
-        btnAdminDelete1.addActionListener(new java.awt.event.ActionListener() {
+        btn_marks_delete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_marks_delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-delete-document-30.png"))); // NOI18N
+        btn_marks_delete.setText("Delete");
+        btn_marks_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminDelete1ActionPerformed(evt);
+                btn_marks_deleteActionPerformed(evt);
             }
         });
 
-        jButton53.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-search-30.png"))); // NOI18N
-        jButton53.setText("Search");
-        jButton53.addActionListener(new java.awt.event.ActionListener() {
+        btn_marks_search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_marks_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-search-30.png"))); // NOI18N
+        btn_marks_search.setText("Search");
+        btn_marks_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton53ActionPerformed(evt);
+                btn_marks_searchActionPerformed(evt);
             }
         });
 
-        jButton54.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-clear-symbol-30.png"))); // NOI18N
-        jButton54.setText("Clear");
-        jButton54.addActionListener(new java.awt.event.ActionListener() {
+        btn_marks_clear.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_marks_clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-clear-symbol-30.png"))); // NOI18N
+        btn_marks_clear.setText("Clear");
+        btn_marks_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton54ActionPerformed(evt);
+                btn_marks_clearActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setText("Enable");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -2295,16 +2406,18 @@ public class LectureView extends javax.swing.JFrame {
                             .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(btnAdminSave1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_marks_save, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnAdminUpload1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_marks_upload, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnAdminDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_marks_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton53, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_marks_search, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton54, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(btn_marks_clear, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14))))
                     .addComponent(jPanel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -2315,18 +2428,19 @@ public class LectureView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdminSave1)
-                    .addComponent(btnAdminUpload1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdminDelete1)
-                    .addComponent(jButton53)
-                    .addComponent(jButton54))
-                .addGap(0, 31, Short.MAX_VALUE))
+                    .addComponent(btn_marks_save)
+                    .addComponent(btn_marks_upload, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_marks_delete)
+                    .addComponent(btn_marks_search)
+                    .addComponent(btn_marks_clear)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 39, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Upload Marks", jPanel6);
+        jTabbedPane1.addTab("Upload Marks", new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-attendance-24.png")), jPanel6); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -2435,7 +2549,329 @@ public class LectureView extends javax.swing.JFrame {
       
     
     }
+       
+       
+      public int findLagestValue(int value1, int value2, int value3){
+      
+          
+          int largestValue;
+          int secondLargestValue;
+
+          if (value1 >= value2 && value1 >= value3) {
+              largestValue = value1;
+              if (value2 >= value3) {
+                  secondLargestValue = value2;
+              } else {
+                 secondLargestValue = value3;
+              }
+         } else if (value2 >= value1 && value2 >= value3) {
+              largestValue = value2;
+              if (value1 >= value3) {
+                  secondLargestValue = value1;
+             } else {
+                  secondLargestValue = value3;
+               }
+         } else {
+                largestValue = value3;
+                if (value1 >= value2) {
+                secondLargestValue = value1;
+                } else {
+                secondLargestValue = value2;
+                  }
+               }
+            
+      return (largestValue + secondLargestValue)/10;
+      } 
+       
+       
+       
+   public void CalculateGPA(){
+        
+        Marks marks = new Marks();
+        List<Marks> list = marks.list();
+        DefaultTableModel DFT = (DefaultTableModel) GradeTable_02.getModel();
+        DFT.setRowCount(0);
+        for(Marks rs: list)
+        {
+            String student_id = rs.getStudentID();
+            String department_id  = rs.getDepartmentID();
+            String course_id =  rs.getCourseID();
+            String level = rs.getLevel();
+            String semester =  rs.getSemester();
+            int Quiz_01 = rs.getQuize_01();
+            int Quiz_02 = rs.getQuize_02();
+            int Quiz_03 = rs.getQuize_03();
+            int Quiz_04 = rs.getQuize_04();
+            int Mid_term  = rs.getMidterm();
+            int Assignment_01 = rs.getAssesment_01();
+            int Assignment_02  = rs.getAssesment_02();
+            int final_practical = rs.getFinalPracticle();
+            int final_theory = rs.getFinalTheory();
+            
+            switch (rs.getType()) {
+                case 0 -> {
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
+                    DFT.addRow(new Object[]{student_id,course_id,department_id , grad_0,grad});
+                }
+                case 1 -> {
+                    
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
+                    DFT.addRow(new Object[]{student_id,course_id,department_id , grad_0,grad});
+                    
+                    
+                }
+                case 2 -> {
+                    
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                     String grad = getGratPointValue(gpa_vale);
+                    DFT.addRow(new Object[]{student_id,course_id,department_id , grad_0,grad});
+                }
+                case 3 -> {
+                    
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
+                    DFT.addRow(new Object[]{student_id,course_id,department_id , grad_0,grad});
+                }
+                default -> {
+                }
+            }
+                    
+            
+        } 
+        
+      
     
+    }
+    
+   
+   
+    public void CalculateGPA_MAIN(){
+        
+        Marks marks = new Marks();
+        List< Marks> list = marks.list();
+        //DefaultTableModel DFT = (DefaultTableModel) gpa_table.getModel();
+        //DFT.setRowCount(0);
+        for(Marks rs: list)
+        {
+              String student_id = rs.getStudentID();
+//            String department_id  = rs.getDepartmentID();
+//            String course_id =  rs.getCourseID();
+//            String level = rs.getLevel();
+//            String semester =  rs.getSemester();
+//            int Quiz_01 = rs.getQuize_01();
+//            int Quiz_02 = rs.getQuize_02();
+//            int Quiz_03 = rs.getQuize_03();
+//            int Quiz_04 = rs.getQuize_04();
+//            int Mid_term  = rs.getMidterm();
+//            int Assignment_01 = rs.getAssesment_01();
+//            int Assignment_02  = rs.getAssesment_02();
+//            int final_practical = rs.getFinalPracticle();
+//            int final_theory = rs.getFinalTheory();
+
+
+            
+              GPA gpa = new GPA ();
+             
+              gpa.get(student_id);
+              GPA_MAIN(student_id);
+            
+            
+                    
+            
+        } 
+        
+      
+    
+    }
+    
+    LinkedList<Double> linkedList = new LinkedList<>();
+    LinkedList<Integer> linkedList2 = new LinkedList<>();
+     LinkedList<String> linkedList3 = new LinkedList<>();
+    
+    public void GPA_MAIN(String sid){
+    
+    
+      
+        
+        GPA gpa = new GPA ();
+        List<GPA> list = gpa.list(sid);
+        DefaultTableModel DFT = (DefaultTableModel) gpa_table.getModel();
+        DFT.setRowCount(0);
+        int a =0;
+        for(GPA rs: list)
+        {
+            String student_id_0 = rs.getStudentID();
+            String department_id  = rs.getDepartmentID();
+            String course_id =  rs.getCourseID();
+            String level = rs.getLevel();
+            String semester =  rs.getSemester();
+            int Quiz_01 = rs.getQuize_01();
+            int Quiz_02 = rs.getQuize_02();
+            int Quiz_03 = rs.getQuize_03();
+            int Quiz_04 = rs.getQuize_04();
+            int Mid_term  = rs.getMidterm();
+            int Assignment_01 = rs.getAssesment_01();
+            int Assignment_02  = rs.getAssesment_02();
+            int final_practical = rs.getFinalPracticle();
+            int final_theory = rs.getFinalTheory();
+            int gpa_value_FROM_DB  = rs.getGpa_value();
+            
+            
+            linkedList3.add(student_id_0);
+            
+           
+            
+            
+            switch (rs.getType()) {
+                case 0 -> {
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    String grad = getGratPointValue(gpa_vale);
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    
+                    //DFT.addRow(new Object[]{ student_id_0,department_id,level,semester});
+                }
+                case 1 -> {
+                    
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    String grad = getGratPointValue(gpa_vale);
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    
+                    
+                    //DFT.addRow(new Object[]{student_id_0,department_id,level,semester});
+                    
+                    
+                }
+                case 2 -> {
+                    
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    String grad = getGratPointValue(gpa_vale);
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    
+                    
+                    //DFT.addRow(new Object[]{student_id_0,department_id,level,semester});
+                }
+                case 3 -> {
+                    
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    String grad = getGratPointValue(gpa_vale);
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    
+                    
+                   
+                    //DFT.addRow(new Object[]{student_id_0,department_id,level,semester});
+                }
+                default -> {
+                }
+            }
+                    
+            
+        } 
+        
+        
+       
+       PrintGPA();
+        
+    }
+    
+    public void PrintGPA(){
+        
+        
+        DefaultTableModel DFT = (DefaultTableModel) gpa_table.getModel();
+        DFT.setRowCount(0);
+    
+       double sum = 0;
+       for (double element : linkedList) {
+            sum += element;
+        }
+        
+        
+        // System.out.println("SUM " + sum);
+        
+         
+        int sum_0 = 0;
+        for (int element_0 : linkedList2) {
+            sum_0 += element_0;
+        }
+        
+         
+        
+        double SGPA = sum/sum_0;
+         
+         
+         //sgpa.setText(String.valueOf(SGPA));
+        
+        
+        String id = "";
+        for (String element_0 : linkedList3) {
+            
+            
+            //DFT.addRow(new Object[]{element_0 ,SGPA});
+            id = element_0;
+            //DFT.addRow(new Object[]{id ,SGPA});
+            
+        }
+        
+         
+         System.out.println(id);
+         //System.out.println("SUM " + sum_0);
+         System.out.println("gpa " + SGPA);
+         //DFT.addRow(new Object[]{id ,SGPA});
+         
+         
+        
+    }
+    
+   
     public void UserLoad(String Key1, String key2){
         
       User user = new User();
@@ -3049,6 +3485,10 @@ public class LectureView extends javax.swing.JFrame {
 //        btnAdminSave.setEnabled(false);
     }//GEN-LAST:event_jButton51ActionPerformed
 
+    
+    
+    
+    
     private void jButton52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
         // TODO add your handling code here:
 
@@ -3075,7 +3515,7 @@ public class LectureView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton52ActionPerformed
 
-    private void btnAdminSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminSave1ActionPerformed
+    private void btn_marks_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_marks_saveActionPerformed
       
         Marks marks = new Marks();
         
@@ -3095,6 +3535,7 @@ public class LectureView extends javax.swing.JFrame {
         marks.setAssesment_02(Integer.parseInt(Lassighment_02.getText()));
         marks.setFinalPracticle(Integer.parseInt(Lpractical.getText()));
         marks.setFinalTheory(Integer.parseInt(Ltheory.getText()));
+        marks.setType(MType.getSelectedIndex());
         
         marks.InsertMarks(marks);
         
@@ -3115,6 +3556,11 @@ public class LectureView extends javax.swing.JFrame {
         Lassighment_02.setText("");
         Lpractical.setText("");
         Ltheory.setText("");
+        MType.setSelectedIndex(0);
+        
+        filedEditable();
+        
+        
         
         
         
@@ -3124,9 +3570,9 @@ public class LectureView extends javax.swing.JFrame {
         
         
 
-    }//GEN-LAST:event_btnAdminSave1ActionPerformed
+    }//GEN-LAST:event_btn_marks_saveActionPerformed
 
-    private void btnAdminUpload1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminUpload1ActionPerformed
+    private void btn_marks_uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_marks_uploadActionPerformed
         
         Marks marks = new Marks();
         
@@ -3140,12 +3586,13 @@ public class LectureView extends javax.swing.JFrame {
         marks.setQuize_01(Integer.parseInt(Lquize_01.getText()));
         marks.setQuize_02(Integer.parseInt(Lquize_02.getText()));
         marks.setQuize_03(Integer.parseInt(Lquize_03.getText()));
-        marks.setQuize_04(Integer.parseInt(Lquize_03.getText()));
+        marks.setQuize_04(Integer.parseInt(Lquize_04.getText()));
         marks.setMidterm(Integer.parseInt(LmidTerm.getText()));
         marks.setAssesment_01(Integer.parseInt(Lassignment_01.getText()));
         marks.setAssesment_02(Integer.parseInt(Lassighment_02.getText()));
         marks.setFinalPracticle(Integer.parseInt(Lpractical.getText()));
         marks.setFinalTheory(Integer.parseInt(Ltheory.getText()));
+        marks.setType(MType.getSelectedIndex());
         
         marks.UpdateMarks(marks);
         
@@ -3166,9 +3613,11 @@ public class LectureView extends javax.swing.JFrame {
         Lassighment_02.setText("");
         Lpractical.setText("");
         Ltheory.setText("");
-    }//GEN-LAST:event_btnAdminUpload1ActionPerformed
+        MType.setSelectedIndex(0);
+        filedEditable();
+    }//GEN-LAST:event_btn_marks_uploadActionPerformed
 
-    private void btnAdminDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminDelete1ActionPerformed
+    private void btn_marks_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_marks_deleteActionPerformed
         // TODO add your handling code here:
         
         
@@ -3198,10 +3647,10 @@ public class LectureView extends javax.swing.JFrame {
         Ltheory.setText("");
 
        
-    }//GEN-LAST:event_btnAdminDelete1ActionPerformed
+    }//GEN-LAST:event_btn_marks_deleteActionPerformed
       String search_student_id_mark;
       String search_cource_id_mark;
-    private void jButton53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton53ActionPerformed
+    private void btn_marks_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_marks_searchActionPerformed
         // TODO add your handling code here:
         
         search_student_id_mark=JOptionPane.showInputDialog("Enter Student ID");
@@ -3241,9 +3690,9 @@ public class LectureView extends javax.swing.JFrame {
 //        btnAdminDelete.setEnabled(true);
 //        btnAdminSave.setEnabled(false);
         
-    }//GEN-LAST:event_jButton53ActionPerformed
+    }//GEN-LAST:event_btn_marks_searchActionPerformed
 
-    private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
+    private void btn_marks_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_marks_clearActionPerformed
         // TODO add your handling code here:
         LstudentID.setText(" ");
         LdepartmentID.setSelectedItem(0);
@@ -3266,8 +3715,113 @@ public class LectureView extends javax.swing.JFrame {
 
         
 
-    }//GEN-LAST:event_jButton54ActionPerformed
+    }//GEN-LAST:event_btn_marks_clearActionPerformed
 
+    public void filedEditable(){
+    
+        LstudentID.setEditable(false);
+        //LdepartmentID.setEditable(false);
+        LCourseID.setEditable(false);
+        //Llevel.setEditable(false);
+        //Lsemester.setEditable(false);
+        Lquize_01.setEditable(false);
+        Lquize_02.setEditable(false);
+        Lquize_03.setEditable(false);
+        Lquize_03.setEditable(false);
+        Lquize_04.setEditable(false);
+        LmidTerm.setEditable(false);
+        Lassignment_01.setEditable(false);
+        Lassighment_02.setEditable(false);
+        Lpractical.setEditable(false);
+        Ltheory.setEditable(false);
+    
+    }
+    
+    
+    public void filedEditable_0(){
+    
+        LstudentID.setEditable(true);
+        //LdepartmentID.setEditable(false);
+        LCourseID.setEditable(true);
+        //Llevel.setEditable(false);
+        //Lsemester.setEditable(false);
+        Lquize_01.setEditable(true);
+        Lquize_02.setEditable(true);
+        Lquize_03.setEditable(true);
+        Lquize_03.setEditable(true);
+        Lquize_04.setEditable(false);
+        Lquize_04.setText("0");
+        LmidTerm.setEditable(true);
+        Lassignment_01.setEditable(false);
+        Lassignment_01.setText("0");
+        Lassighment_02.setEditable(false);
+        Lassighment_02.setText("0");
+        Lpractical.setEditable(true);
+        Ltheory.setEditable(true);
+    
+    }
+    
+    
+    public void filedEditable_1(){
+    
+        LstudentID.setEditable(true);
+        //LdepartmentID.setEditable(false);
+        LCourseID.setEditable(true);
+        //Llevel.setEditable(false);
+        //Lsemester.setEditable(false);
+        Lquize_01.setEditable(true);
+        Lquize_02.setEditable(true);
+        Lquize_03.setEditable(true);
+        Lquize_03.setEditable(true);
+        Lquize_04.setEditable(true);
+        LmidTerm.setEditable(true);
+        Lassignment_01.setEditable(true);
+        Lassighment_02.setEditable(true);
+        Lpractical.setEditable(false);
+        Ltheory.setEditable(true);
+    
+    }
+    
+    public void filedEditable_2(){
+    
+        LstudentID.setEditable(true);
+        //LdepartmentID.setEditable(false);
+        LCourseID.setEditable(true);
+        //Llevel.setEditable(false);
+        //Lsemester.setEditable(false);
+        Lquize_01.setEditable(true);
+        Lquize_02.setEditable(true);
+        Lquize_03.setEditable(true);
+        Lquize_03.setEditable(true);
+        Lquize_04.setEditable(false);
+        LmidTerm.setEditable(false);
+        Lassignment_01.setEditable(true);
+        Lassighment_02.setEditable(true);
+        Lpractical.setEditable(true);
+        Ltheory.setEditable(true);
+    
+    }
+    
+    public void filedEditable_3(){
+    
+         LstudentID.setEditable(true);
+        //LdepartmentID.setEditable(false);
+        LCourseID.setEditable(true);
+        //Llevel.setEditable(false);
+        //Lsemester.setEditable(false);
+        Lquize_01.setEditable(true);
+        Lquize_02.setEditable(true);
+        Lquize_03.setEditable(true);
+        Lquize_03.setEditable(true);
+        Lquize_04.setEditable(true);
+        LmidTerm.setEditable(false);
+        Lassignment_01.setEditable(true);
+        Lassighment_02.setEditable(true);
+        Lpractical.setEditable(true);
+        Ltheory.setEditable(true);
+    
+    }
+    
     private void Lquize_01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lquize_01ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Lquize_01ActionPerformed
@@ -3296,9 +3850,292 @@ public class LectureView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_LtheoryActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    
+    String GMstudent_id;
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+        
+        GMstudent_id=JOptionPane.showInputDialog("Enter Student ID");
+        
+        Grade grade = new Grade();
+        grade.get(GMstudent_id);
+        
+        
+        Gstudent_id.setText(grade.getStudentID());
+        GDepartment_id.setText(grade.getDepartmentID());
+        GLevel.setText(grade.getLevel());
+        GSemester.setText(grade.getSemester());
+        GetCourseGrade();
+        
+        
+        
+        
+        
+       
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
+    public String getGratPointValue(int marks){
+    
+     // Assuming marks is an integer variable representing the marks out of 100
+
+    String grade; // Variable to store the grade character
+
+    if (marks >= 98) {
+       grade = "A+";
+    } else if (marks >= 95) {
+       grade = "A";
+    } else if (marks >= 90) {
+       grade = "A-";
+    } else if (marks >= 88) {
+       grade = "B+";
+    } else if (marks >= 85) {
+       grade = "B";
+    }  else if (marks >= 80) {
+       grade = "B-";
+    }  else if (marks >= 78) {
+       grade = "C+";
+    }  else if (marks >= 75) {
+       grade = "C";
+    }  else if (marks >= 70) {
+       grade = "C-";
+    }  else if (marks >= 68) {
+       grade = "D+";
+    }  else if (marks >= 65) {
+       grade = "D";
+    }  else {
+       grade = "E"; // Default grade for marks below 50
+    }
+    
+    
+     return grade;
+    }
+    
+    
+    public double getGratPointValue_0(int marks){
+    
+     // Assuming marks is an integer variable representing the marks out of 100
+
+    double grade; // Variable to store the grade character
+
+    if (marks >= 98) {
+       grade = 4.0;
+    } else if (marks >= 95) {
+       grade = 4.0;
+    } else if (marks >= 90) {
+       grade = 3.7;
+    } else if (marks >= 88) {
+       grade = 3.3;
+    } else if (marks >= 85) {
+       grade = 3.0;
+    }  else if (marks >= 80) {
+       grade = 2.7;
+    }  else if (marks >= 78) {
+       grade = 2.3;
+    }  else if (marks >= 75) {
+       grade = 2.0;
+    }  else if (marks >= 70) {
+       grade = 1.7;
+    }  else if (marks >= 68) {
+       grade = 1.3;
+    }  else if (marks >= 65) {
+       grade = 1.0;
+    }  else {
+       grade = 0; // Default grade for marks below 50
+    }
+    
+    
+     return grade;
+    }
+    
+   
+    
+     public void GetCourseGrade(){
+        
+         
+        LinkedList<Double> linkedList = new LinkedList<>();
+        LinkedList<Double> linkedList2 = new LinkedList<>();
+        
+        Grade grade = new Grade();
+        List<Grade> list = grade.list(GMstudent_id);
+        DefaultTableModel DFT = (DefaultTableModel) GradeTable_01.getModel();
+        DFT.setRowCount(0);
+        for(Grade rs: list)
+        {
+            String student_id_0 = rs.getStudentID();
+            String department_id  = rs.getDepartmentID();
+            String course_id =  rs.getCourseID();
+            String level = rs.getLevel();
+            String semester =  rs.getSemester();
+            int Quiz_01 = rs.getQuize_01();
+            int Quiz_02 = rs.getQuize_02();
+            int Quiz_03 = rs.getQuize_03();
+            int Quiz_04 = rs.getQuize_04();
+            int Mid_term  = rs.getMidterm();
+            int Assignment_01 = rs.getAssesment_01();
+            int Assignment_02  = rs.getAssesment_02();
+            int final_practical = rs.getFinalPracticle();
+            int final_theory = rs.getFinalTheory();
+            double gpa_value_FROM_DB  = rs.getGpa_value();
+            
+            switch (rs.getType()) {
+                case 0 -> {
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    String grad = getGratPointValue(gpa_vale);
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    DFT.addRow(new Object[]{course_id,grad});
+                }
+                case 1 -> {
+                    
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    String grad = getGratPointValue(gpa_vale);
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    
+                    DFT.addRow(new Object[]{course_id,grad});
+                    
+                    
+                }
+                case 2 -> {
+                    
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    String grad = getGratPointValue(gpa_vale);
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    
+                    DFT.addRow(new Object[]{course_id,grad});
+                }
+                case 3 -> {
+                    
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    String grad = getGratPointValue(gpa_vale);
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    
+                    
+                    DFT.addRow(new Object[]{course_id,grad});
+                }
+                default -> {
+                }
+            }
+                    
+            
+        } 
+        
+        
+        double sum = 0;
+        for (double element : linkedList) {
+            sum += element;
+        }
+        
+        
+         System.out.println("SUM " + sum);
+        
+         
+        double sum_0 = 0;
+        for (double element_0 : linkedList2) {
+            sum_0 += element_0;
+        }
+        
+        
+         //System.out.println("SUM " + sum_0);
+         //System.out.println("gpa " + sum/sum_0);
+         double SGPA = sum/sum_0;
+         sgpa.setText(String.valueOf(SGPA));
+        
+      linkedList.clear();
+      linkedList2.clear();
+     
+    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        System.out.println(MType.getSelectedIndex());
+        switch (MType.getSelectedIndex()) {
+            case 0:
+                btn_marks_save.setEnabled(true);
+                btn_marks_upload.setEnabled(true);
+                btn_marks_delete.setEnabled(true);
+                btn_marks_search.setEnabled(true);
+                btn_marks_search.setEnabled(true);
+                btn_marks_clear.setEnabled(true);
+                filedEditable_0();
+                break;
+            case 1:
+                btn_marks_save.setEnabled(true);
+                btn_marks_upload.setEnabled(true);
+                btn_marks_delete.setEnabled(true);
+                btn_marks_search.setEnabled(true);
+                btn_marks_search.setEnabled(true);
+                btn_marks_clear.setEnabled(true);
+                filedEditable_1();
+                break;
+            case 2:
+                btn_marks_save.setEnabled(true);
+                btn_marks_upload.setEnabled(true);
+                btn_marks_delete.setEnabled(true);
+                btn_marks_search.setEnabled(true);
+                btn_marks_search.setEnabled(true);
+                btn_marks_clear.setEnabled(true);
+                filedEditable_2();
+                break;
+            default:
+                btn_marks_save.setEnabled(true);
+                btn_marks_upload.setEnabled(true);
+                btn_marks_delete.setEnabled(true);
+                btn_marks_search.setEnabled(true);
+                btn_marks_search.setEnabled(true);
+                btn_marks_clear.setEnabled(true);
+                filedEditable_3();
+                break;
+        }
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        
+        Gstudent_id.setText("Student ID");
+        GDepartment_id.setText("Department ID");
+        GLevel.setText("Level");
+        GSemester.setText("Semester");
+        
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3338,6 +4175,13 @@ public class LectureView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Download;
     private javax.swing.JButton Download1;
+    private javax.swing.JLabel GDepartment_id;
+    private javax.swing.JLabel GLevel;
+    private javax.swing.JLabel GSemester;
+    private javax.swing.JTable GradeTable_01;
+    private javax.swing.JTable GradeTable_02;
+    private javax.swing.JLabel Gstudent_id;
+    private javax.swing.JLabel Gstudent_name;
     private javax.swing.JTextField LCourseID;
     private javax.swing.JTextField Lassighment_02;
     private javax.swing.JTextField Lassignment_01;
@@ -3352,6 +4196,7 @@ public class LectureView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Lsemester;
     private javax.swing.JTextField LstudentID;
     private javax.swing.JTextField Ltheory;
+    private javax.swing.JComboBox<String> MType;
     private javax.swing.JTable MarksTable;
     private javax.swing.JButton Serch;
     private javax.swing.JButton Serch1;
@@ -3367,34 +4212,40 @@ public class LectureView extends javax.swing.JFrame {
     private javax.swing.JTextField User_NIC2;
     private javax.swing.JTextArea body;
     private javax.swing.JButton btnAdminDelete;
-    private javax.swing.JButton btnAdminDelete1;
     private javax.swing.JButton btnAdminSave;
-    private javax.swing.JButton btnAdminSave1;
     private javax.swing.JButton btnAdminUpload;
-    private javax.swing.JButton btnAdminUpload1;
     private javax.swing.JButton btnLectureUpdate;
     private javax.swing.JButton btnLectureUpdate1;
+    private javax.swing.JButton btn_marks_clear;
+    private javax.swing.JButton btn_marks_delete;
+    private javax.swing.JButton btn_marks_save;
+    private javax.swing.JButton btn_marks_search;
+    private javax.swing.JButton btn_marks_upload;
+    private javax.swing.JLabel cgpa;
     private javax.swing.JTextField date;
     private javax.swing.JTextField department_id;
     private javax.swing.JTextArea description;
     private javax.swing.JLabel file_path;
+    private javax.swing.JTable gpa_table;
     private javax.swing.JLabel image_lbl4;
     private javax.swing.JLabel image_lbl5;
     private javax.swing.JLabel image_lbl6;
     private javax.swing.JLabel image_path1;
     private javax.swing.JLabel image_path2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton35;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton46;
     private javax.swing.JButton jButton47;
     private javax.swing.JButton jButton48;
     private javax.swing.JButton jButton49;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton50;
     private javax.swing.JButton jButton51;
     private javax.swing.JButton jButton52;
-    private javax.swing.JButton jButton53;
-    private javax.swing.JButton jButton54;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -3441,14 +4292,10 @@ public class LectureView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel62;
@@ -3511,18 +4358,17 @@ public class LectureView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JButton lecture_image_add;
     private javax.swing.JTextField medical_id;
+    private javax.swing.JLabel sgpa;
     private javax.swing.JTextField state;
     private javax.swing.JTextField student_id;
     private javax.swing.JTextField student_id1;

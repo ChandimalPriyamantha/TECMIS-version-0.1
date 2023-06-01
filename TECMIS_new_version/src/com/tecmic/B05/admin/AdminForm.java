@@ -2777,7 +2777,7 @@ public class AdminForm extends javax.swing.JFrame {
     private void SerchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SerchActionPerformed
         // TODO add your handling code here:
         
-        search_notice = Integer.parseInt(JOptionPane.showInputDialog("Enter Student ID"));
+        search_notice = Integer.parseInt(JOptionPane.showInputDialog("Enter Notice ID"));
 
         Notice dao = new Notice();
         dao.get(search_notice);
@@ -2852,7 +2852,7 @@ public class AdminForm extends javax.swing.JFrame {
     
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         // TODO add your handling code here:
-        Search_course =JOptionPane.showInputDialog("Enter Student ID");
+        Search_course =JOptionPane.showInputDialog("Enter Course ID");
 
         Course co = new Course();
         co.get(Search_course);
@@ -3327,7 +3327,7 @@ public class AdminForm extends javax.swing.JFrame {
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // TODO add your handling code here:
-        search_technical_officer =JOptionPane.showInputDialog("Enter Student ID");
+        search_technical_officer =JOptionPane.showInputDialog("Enter technical officer's ID");
 
         Admin admin = new Admin();
         admin.get( search_technical_officer,"technical_officer");
@@ -3364,7 +3364,7 @@ public class AdminForm extends javax.swing.JFrame {
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
         // TODO add your handling code here:
         
-        search_lecture =JOptionPane.showInputDialog("Enter Student ID");
+        search_lecture =JOptionPane.showInputDialog("Enter lecture ID");
 
         Admin admin = new Admin();
         admin.get(  search_lecture,"lecture");
@@ -3440,7 +3440,7 @@ public class AdminForm extends javax.swing.JFrame {
     String  search_admin ;
     private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
         // TODO add your handling code here:
-        search_admin =JOptionPane.showInputDialog("Enter Student ID");
+        search_admin =JOptionPane.showInputDialog("Enter Admin ID");
 
         Admin admin = new Admin();
         admin.get(   search_admin,"admin");
