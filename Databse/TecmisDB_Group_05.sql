@@ -213,29 +213,30 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `tecmis_db`.`mark`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tecmis_db`.`mark` (
-  `mark_id` INT(11) NOT NULL,
-  `grade` VARCHAR(45) NULL DEFAULT NULL,
-  `level` VARCHAR(45) NULL DEFAULT NULL,
-  `assesment` INT(11) NULL DEFAULT NULL,
-  `quiz` INT(11) NULL DEFAULT NULL,
-  `course_id` INT(11) NULL DEFAULT NULL,
-  `sgpa` DECIMAL(3,2) NULL DEFAULT NULL,
-  `cgpa` DECIMAL(3,2) NULL DEFAULT NULL,
-  `mid_term` INT(11) NULL DEFAULT NULL,
-  `final_theory` INT(11) NULL DEFAULT NULL,
-  `final_practicle` INT(11) NULL DEFAULT NULL,
-  `student_id` VARCHAR(20) NOT NULL,
-  `student_department_department_id` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`mark_id`, `student_id`, `student_department_department_id`),
-  INDEX `fk_mark_student1_idx` (`student_id` ASC, `student_department_department_id` ASC) VISIBLE,
-  CONSTRAINT `fk_mark_student1`
-    FOREIGN KEY (`student_id` , `student_department_department_id`)
-    REFERENCES `tecmis_db`.`student` (`id` , `department_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+-- auto-generated definition
+create table mark
+(
+    student_id                       varchar(20) not null,
+    student_department_department_id varchar(20) not null,
+    course_id                        varchar(45) not null,
+    level                            varchar(45) null,
+    semester                         varchar(45) null,
+    Quiz_01                          int         null,
+    Quiz_02                          int         null,
+    Quiz_03                          int         null,
+    Quiz_04                          int         null,
+    Mid_term                         int         null,
+    Assignment_01                    int         null,
+    Assignment_02                    int         null,
+    final_practical                  int         null,
+    final_theory                     int         null,
+    Type                             int         null,
+    gpa_value                        double      null,
+    primary key (student_id, course_id)
+);
+
+create index fk_mark_student1_idx
+    on mark (student_id, student_department_department_id);
 
 
 -- -----------------------------------------------------
