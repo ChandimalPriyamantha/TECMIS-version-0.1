@@ -6,6 +6,7 @@ package com.tecmis.BO5.student;
 
 import com.tecmic.B05.TecmisDB.TecmisDB;
 import com.tecmis.B05.course.Course;
+import com.tecmis.BO5.marks.Grade;
 import java.awt.Desktop;
 import java.awt.Image;
 import java.io.File;
@@ -13,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +39,7 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
         LoadMedical ();
         //LoadCourse();
         Courseload();
+        calculatGPA();
         
         
     }
@@ -66,6 +69,312 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
           
             }
         }
+    Auth auth = Auth.getInstance();
+    String usr = auth.getUsername();
+    public void calculatGPA(){
+        
+        
+//        Auth auth = Auth.getInstance();
+//        String usr = auth.getUsername();
+    
+        Grade grade = new Grade();
+        grade.get_0(usr);
+        
+        
+        
+        GetCourseGrade();
+               
+    
+    }
+    
+    
+     public int findLagestValue(int value1, int value2, int value3){
+      
+          
+          int largestValue;
+          int secondLargestValue;
+
+          if (value1 >= value2 && value1 >= value3) {
+              largestValue = value1;
+              if (value2 >= value3) {
+                  secondLargestValue = value2;
+              } else {
+                 secondLargestValue = value3;
+              }
+         } else if (value2 >= value1 && value2 >= value3) {
+              largestValue = value2;
+              if (value1 >= value3) {
+                  secondLargestValue = value1;
+             } else {
+                  secondLargestValue = value3;
+               }
+         } else {
+                largestValue = value3;
+                if (value1 >= value2) {
+                secondLargestValue = value1;
+                } else {
+                secondLargestValue = value2;
+                  }
+               }
+            
+      return ((largestValue + secondLargestValue)/2)/10;
+      } 
+       
+      public int BestMarksFinder(int  mark1,  int mark2,  int mark3,  int mark4){
+      
+          
+       int best1 = Integer.MIN_VALUE;
+        int best2 = Integer.MIN_VALUE;
+        int best3 = Integer.MIN_VALUE;
+
+        if (mark1 >= mark2 && mark1 >= mark3 && mark1 >= mark4) {
+            best1 = mark1;
+            if (mark2 >= mark3 && mark2 >= mark4) {
+                best2 = mark2;
+                best3 = Math.max(mark3, mark4);
+            } else if (mark3 >= mark2 && mark3 >= mark4) {
+                best2 = mark3;
+                best3 = Math.max(mark2, mark4);
+            } else {
+                best2 = mark4;
+                best3 = Math.max(mark2, mark3);
+            }
+        } else if (mark2 >= mark1 && mark2 >= mark3 && mark2 >= mark4) {
+            best1 = mark2;
+            if (mark1 >= mark3 && mark1 >= mark4) {
+                best2 = mark1;
+                best3 = Math.max(mark3, mark4);
+            } else if (mark3 >= mark1 && mark3 >= mark4) {
+                best2 = mark3;
+                best3 = Math.max(mark1, mark4);
+            } else {
+                best2 = mark4;
+                best3 = Math.max(mark1, mark3);
+            }
+        } else if (mark3 >= mark1 && mark3 >= mark2 && mark3 >= mark4) {
+            best1 = mark3;
+            if (mark1 >= mark2 && mark1 >= mark4) {
+                best2 = mark1;
+                best3 = Math.max(mark2, mark4);
+            } else if (mark2 >= mark1 && mark2 >= mark4) {
+                best2 = mark2;
+                best3 = Math.max(mark1, mark4);
+            } else {
+                best2 = mark4;
+                best3 = Math.max(mark1, mark2);
+            }
+        } else {
+            best1 = mark4;
+            if (mark1 >= mark2 && mark1 >= mark3) {
+                best2 = mark1;
+                best3 = Math.max(mark2, mark3);
+            } else if (mark2 >= mark1 && mark2 >= mark3) {
+                best2 = mark2;
+                best3 = Math.max(mark1, mark3);
+            } else {
+                best2 = mark3;
+                best3 = Math.max(mark1, mark2);
+            }
+        }
+      return ((best1+best2+best3)/3)/10;
+      } 
+    
+     public String getGratPointValue(int marks){
+    
+     // Assuming marks is an integer variable representing the marks out of 100
+
+    String grade; // Variable to store the grade character
+
+    if (marks >= 98) {
+       grade = "A+";
+    } else if (marks >= 95) {
+       grade = "A";
+    } else if (marks >= 90) {
+       grade = "A-";
+    } else if (marks >= 88) {
+       grade = "B+";
+    } else if (marks >= 85) {
+       grade = "B";
+    }  else if (marks >= 80) {
+       grade = "B-";
+    }  else if (marks >= 78) {
+       grade = "C+";
+    }  else if (marks >= 75) {
+       grade = "C";
+    }  else if (marks >= 70) {
+       grade = "C-";
+    }  else if (marks >= 68) {
+       grade = "D+";
+    }  else if (marks >= 65) {
+       grade = "D";
+    }  else {
+       grade = "E"; // Default grade for marks below 50
+    }
+    
+    
+     return grade;
+    }
+    
+    
+    public double getGratPointValue_0(int marks){
+    
+     // Assuming marks is an integer variable representing the marks out of 100
+
+    double grade; // Variable to store the grade character
+
+    if (marks >= 98) {
+       grade = 4.0;
+    } else if (marks >= 95) {
+       grade = 4.0;
+    } else if (marks >= 90) {
+       grade = 3.7;
+    } else if (marks >= 88) {
+       grade = 3.3;
+    } else if (marks >= 85) {
+       grade = 3.0;
+    }  else if (marks >= 80) {
+       grade = 2.7;
+    }  else if (marks >= 78) {
+       grade = 2.3;
+    }  else if (marks >= 75) {
+       grade = 2.0;
+    }  else if (marks >= 70) {
+       grade = 1.7;
+    }  else if (marks >= 68) {
+       grade = 1.3;
+    }  else if (marks >= 65) {
+       grade = 1.0;
+    }  else {
+       grade = 0; // Default grade for marks below 50
+    }
+    
+    
+     return grade;
+    }
+    
+    
+         public void GetCourseGrade(){
+        
+         
+        LinkedList<Double> linkedList = new LinkedList<>();
+        LinkedList<Double> linkedList2 = new LinkedList<>();
+        
+        Grade grade = new Grade();
+        List<Grade> list = grade.list(usr);
+        DefaultTableModel DFT = (DefaultTableModel) resultTbl.getModel();
+        DFT.setRowCount(0);
+        for(Grade rs: list)
+        {
+            String student_id_0 = rs.getStudentID();
+            String department_id  = rs.getDepartmentID();
+            String course_id =  rs.getCourseID();
+            String level = rs.getLevel();
+            String semester =  rs.getSemester();
+            int Quiz_01 = rs.getQuize_01();
+            int Quiz_02 = rs.getQuize_02();
+            int Quiz_03 = rs.getQuize_03();
+            int Quiz_04 = rs.getQuize_04();
+            int Mid_term  = rs.getMidterm();
+            int Assignment_01 = rs.getAssesment_01();
+            int Assignment_02  = rs.getAssesment_02();
+            int final_practical = rs.getFinalPracticle();
+            int final_theory = rs.getFinalTheory();
+            double gpa_value_FROM_DB  = rs.getGpa_value();
+            
+            switch (rs.getType()) {
+                case 0 -> {
+                     int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    DFT.addRow(new Object[]{course_id,grad});
+                }
+                case 1 -> {
+                    
+                    int best_tow_of_tree_quiz_for_gpa = BestMarksFinder(Quiz_01,  Quiz_02,  Quiz_03,  Quiz_04);
+                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
+                    
+                    int final_theory_for_gpa = (final_theory*6)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+assignment+final_theory_for_gpa; 
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    
+                    DFT.addRow(new Object[]{course_id,grad});
+                    
+                    
+                }
+                case 2 -> {
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
+                    int final_practical_for_gpa = (final_practical*3)/10;
+                    int final_theory_for_gpa = (final_theory*4)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+assignment+final_practical_for_gpa+final_theory_for_gpa;
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    
+                    DFT.addRow(new Object[]{course_id,grad});
+                }
+                case 3 -> {
+                    
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
+                    int final_practical_for_gpa = (final_practical*4)/10;
+                    int final_theory_for_gpa = (final_theory*3)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+assignment+final_practical_for_gpa+final_theory_for_gpa;
+                    double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
+                    
+                    linkedList.add(grad_0*gpa_value_FROM_DB);
+                    linkedList2.add(gpa_value_FROM_DB);
+                    
+                    
+                    DFT.addRow(new Object[]{course_id,grad});
+                }
+                default -> {
+                }
+            }
+                    
+            
+        } 
+        
+        
+        double sum = 0;
+        for (double element : linkedList) {
+            sum += element;
+        }
+        
+        
+         System.out.println("SUM " + sum);
+        
+         
+        double sum_0 = 0;
+        for (double element_0 : linkedList2) {
+            sum_0 += element_0;
+        }
+        
+        
+         //System.out.println("SUM " + sum_0);
+         //System.out.println("gpa " + sum/sum_0);
+         double SGPA = sum/sum_0;
+         sgpa.setText(String.valueOf(SGPA));
+        
+      linkedList.clear();
+      linkedList2.clear();
+     
+    }
     
     
 //    public void LoadCourse()
@@ -206,7 +515,7 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
            
            if(rs.next()){
                String gpa=rs.getString("GPA_Value");
-               gpaval.setText(gpa);
+               //gpaval.setText(gpa);
            } 
            
         }catch(Exception e){
@@ -329,9 +638,8 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         GPA1 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        gpaval = new javax.swing.JLabel();
+        sgpa = new javax.swing.JLabel();
+        cgpa = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel40 = new javax.swing.JLabel();
@@ -521,11 +829,11 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
 
             },
             new String [] {
-                "Subject Code ", "Subject Name", "Grade"
+                "Subject Code ", "Grade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -545,7 +853,6 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
         if (resultTbl.getColumnModel().getColumnCount() > 0) {
             resultTbl.getColumnModel().getColumn(0).setResizable(false);
             resultTbl.getColumnModel().getColumn(1).setResizable(false);
-            resultTbl.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jLabel18.setText("A+");
@@ -680,36 +987,13 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
                 .addGap(34, 34, 34))
         );
 
-        jPanel13.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel13.setForeground(new java.awt.Color(0, 153, 153));
+        sgpa.setBackground(new java.awt.Color(255, 255, 255));
+        sgpa.setText("SGPA");
+        sgpa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("GPA");
-
-        gpaval.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        gpaval.setForeground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(gpaval, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gpaval, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
+        cgpa.setBackground(new java.awt.Color(255, 255, 255));
+        cgpa.setText("CGPA");
+        cgpa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -726,14 +1010,16 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
                         .addGap(21, 21, 21)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(147, 147, 147)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(GPA1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(98, 98, 98)
-                                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cgpa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(sgpa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)))))
+                .addGap(319, 319, 319))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -741,18 +1027,21 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel16))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(sgpa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cgpa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addComponent(GPA1)
+                        .addGap(192, 192, 192))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(69, 69, 69)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(GPA1)
-                .addGap(17, 17, 17))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Results", new javax.swing.ImageIcon(getClass().getResource("/Images/Marks.png")), jPanel11); // NOI18N
@@ -1301,10 +1590,10 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
     private javax.swing.JDesktopPane ProfilePane;
     private javax.swing.JLabel SelectedLM;
     private javax.swing.JTable attenTbl;
+    private javax.swing.JLabel cgpa;
     private javax.swing.JComboBox<String> cmsub;
     private javax.swing.JTable coursetbl;
     private javax.swing.JLabel file_path;
-    private javax.swing.JLabel gpaval;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1343,14 +1632,12 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1370,6 +1657,7 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTable resultTbl;
     private javax.swing.JLabel selectlm;
+    private javax.swing.JLabel sgpa;
     private javax.swing.JComboBox<String> sub;
     private javax.swing.JTable tblcms;
     // End of variables declaration//GEN-END:variables

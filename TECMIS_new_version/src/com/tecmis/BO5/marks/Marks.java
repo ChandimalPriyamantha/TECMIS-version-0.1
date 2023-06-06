@@ -34,6 +34,15 @@ public class Marks {
     private String semester;
     private String studentID;
     private int type;
+    private int GPA;
+
+    public int getGPA() {
+        return GPA;
+    }
+
+    public void setGPA(int GPA) {
+        this.GPA = GPA;
+    }
 
     public int getType() {
         return type;
@@ -187,6 +196,7 @@ public class Marks {
                 marks.setFinalPracticle(rs.getInt("final_practical"));
                 marks.setFinalTheory(rs.getInt("final_theory"));
                 marks.setType(rs.getInt("Type"));
+                marks.setGPA(rs.getInt("gpa_value"));
                 
  
                 list.add(marks);
@@ -227,6 +237,8 @@ public class Marks {
                 setAssesment_02(rs.getInt("Assignment_02"));
                 setFinalPracticle(rs.getInt("final_practical"));
                 setFinalTheory(rs.getInt("final_theory"));
+                setType(rs.getInt("Type"));
+                setGPA(rs.getInt("gpa_value"));
  
             }
             
@@ -244,7 +256,7 @@ public class Marks {
        
        try {
             Connection con =  TecmisDB.getConnection();
-            String sql = "INSERT INTO mark(student_id,student_department_department_id,course_id,level,semester ,Quiz_01,Quiz_02,Quiz_03,Quiz_04,Mid_term,Assignment_01,Assignment_02,final_practical,final_theory,Type) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO mark(student_id,student_department_department_id,course_id,level,semester ,Quiz_01,Quiz_02,Quiz_03,Quiz_04,Mid_term,Assignment_01,Assignment_02,final_practical,final_theory,Type,gpa_value) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
             
             ps.setString(1, marks.getStudentID());
@@ -262,6 +274,7 @@ public class Marks {
             ps.setInt(13, marks.getFinalPracticle());
             ps.setInt(14, marks.getFinalTheory());
             ps.setInt(15,marks.getType());
+            ps.setInt(16,marks.getGPA());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Saved!");
         } catch (Exception e) {
@@ -277,7 +290,7 @@ public class Marks {
        
        try {
             Connection con =  TecmisDB.getConnection();
-            String sql = "UPDATE  mark SET student_id=?,student_department_department_id=?,course_id=?,level=?,semester=? ,Quiz_01=?,Quiz_02=?,Quiz_03=?,Quiz_04=?,Mid_term=?,Assignment_01=?,Assignment_02=?,final_practical=?,final_theory=?, Type=? WHERE student_id=? AND course_id=?";
+            String sql = "UPDATE  mark SET student_id=?,student_department_department_id=?,course_id=?,level=?,semester=? ,Quiz_01=?,Quiz_02=?,Quiz_03=?,Quiz_04=?,Mid_term=?,Assignment_01=?,Assignment_02=?,final_practical=?,final_theory=?, Type=?, gpa_value=? WHERE student_id=? AND course_id=?";
             PreparedStatement ps = con.prepareStatement(sql);
             
             ps.setString(1, marks.getStudentID());
@@ -295,8 +308,9 @@ public class Marks {
             ps.setInt(13, marks.getFinalPracticle());
             ps.setInt(14, marks.getFinalTheory());
             ps.setInt(15,marks.getType());
-            ps.setString(16, marks.getStudentID());
-            ps.setString(17, marks.getCourseID());
+            ps.setInt(16,marks.getGPA());
+            ps.setString(17, marks.getStudentID());
+            ps.setString(18, marks.getCourseID());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Updated!");
         } catch (Exception e) {

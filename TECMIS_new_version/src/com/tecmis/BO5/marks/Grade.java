@@ -214,7 +214,48 @@ public class Grade {
     
     
     
-    public Grade get(String sid) {
+    public Grade get(String sid, String semester, String level) {
+         Grade grade = new Grade();
+        try {
+            
+            Connection con = TecmisDB.getConnection();
+            String sql = "SELECT * FROM mark WHERE student_id=? AND semester=? AND level=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, sid);
+            ps.setString(2,  semester);
+            ps.setString(3, level);
+           
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                
+                setStudentID(rs.getString("student_id"));
+                setDepartmentID(rs.getString("student_department_department_id"));
+                setCourseID(rs.getString("course_id"));
+                setLevel(rs.getString("level"));
+                setSemester(rs.getString("semester"));
+                setQuize_01(rs.getInt("Quiz_01"));
+                setQuize_02(rs.getInt("Quiz_02"));
+                setQuize_03(rs.getInt("Quiz_03"));
+                setQuize_04(rs.getInt("Quiz_04"));
+                setMidterm(rs.getInt("mid_term"));
+                setAssesment_01(rs.getInt("Assignment_01"));
+                setAssesment_02(rs.getInt("Assignment_02"));
+                setFinalPracticle(rs.getInt("final_practical"));
+                setFinalTheory(rs.getInt("final_theory"));
+                setGpa_value(rs.getInt("gpa_value"));
+ 
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+        return grade;
+    }
+    
+    
+    
+    public Grade get_0(String sid) {
          Grade grade = new Grade();
         try {
             
@@ -222,6 +263,7 @@ public class Grade {
             String sql = "SELECT * FROM mark WHERE student_id=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, sid);
+          
            
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
@@ -253,3 +295,8 @@ public class Grade {
       
     
 }
+      
+    
+
+
+

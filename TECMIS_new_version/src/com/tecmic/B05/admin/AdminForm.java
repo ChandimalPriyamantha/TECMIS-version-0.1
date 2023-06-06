@@ -3254,7 +3254,7 @@ public class AdminForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         Admin admin = new Admin();
         
-        //admin.setLogingState("admin");
+        admin.setLogingState("admin");
         
         
         

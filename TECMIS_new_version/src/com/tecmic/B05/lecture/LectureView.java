@@ -286,6 +286,8 @@ public class LectureView extends javax.swing.JFrame {
         MType = new javax.swing.JComboBox<>();
         Ltheory = new javax.swing.JTextField();
         jLabel49 = new javax.swing.JLabel();
+        MGpa = new javax.swing.JComboBox<>();
+        jLabel52 = new javax.swing.JLabel();
         jPanel34 = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         btn_marks_save = new javax.swing.JButton();
@@ -2193,6 +2195,11 @@ public class LectureView extends javax.swing.JFrame {
 
         jLabel49.setText("Type");
 
+        MGpa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        MGpa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel52.setText("GPA");
+
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
         jPanel33Layout.setHorizontalGroup(
@@ -2260,11 +2267,13 @@ public class LectureView extends javax.swing.JFrame {
                     .addGroup(jPanel33Layout.createSequentialGroup()
                         .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel41)
-                            .addComponent(jLabel49))
+                            .addComponent(jLabel49)
+                            .addComponent(jLabel52))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(MType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Ltheory, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))))
+                            .addComponent(Ltheory, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                            .addComponent(MGpa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel33Layout.setVerticalGroup(
@@ -2312,7 +2321,10 @@ public class LectureView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel33Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Lassighment_02, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Lassighment_02, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MGpa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel52))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jLabel35)
                 .addContainerGap())
@@ -2580,15 +2592,15 @@ public class LectureView extends javax.swing.JFrame {
                   }
                }
             
-      return (largestValue + secondLargestValue)/2;
+      return ((largestValue + secondLargestValue)/2)/10;
       } 
        
-      public double BestMarksFinder(double  mark1,  double mark2,  double mark3,  double mark4){
+      public int BestMarksFinder(int  mark1,  int mark2,  int mark3,  int mark4){
       
           
-        double best1 = Integer.MIN_VALUE;
-        double best2 = Integer.MIN_VALUE;
-        double best3 = Integer.MIN_VALUE;
+       int best1 = Integer.MIN_VALUE;
+        int best2 = Integer.MIN_VALUE;
+        int best3 = Integer.MIN_VALUE;
 
         if (mark1 >= mark2 && mark1 >= mark3 && mark1 >= mark4) {
             best1 = mark1;
@@ -2639,7 +2651,7 @@ public class LectureView extends javax.swing.JFrame {
                 best3 = Math.max(mark1, mark2);
             }
         }
-      return (best1+best2+best3)/3;
+      return ((best1+best2+best3)/3)/10;
       } 
        
    public void CalculateGPA(){
@@ -2667,7 +2679,7 @@ public class LectureView extends javax.swing.JFrame {
             
             switch (rs.getType()) {
                 case 0 -> {
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
                     int mid_term_for_gpa = (Mid_term*2)/10;
                     int final_practical_for_gpa = (final_practical*3)/10;
                     int final_theory_for_gpa = (final_theory*4)/10;
@@ -2678,11 +2690,12 @@ public class LectureView extends javax.swing.JFrame {
                 }
                 case 1 -> {
                     
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int best_tow_of_tree_quiz_for_gpa = BestMarksFinder(Quiz_01,  Quiz_02,  Quiz_03,  Quiz_04);
                     int mid_term_for_gpa = (Mid_term*2)/10;
-                    int final_practical_for_gpa = (final_practical*3)/10;
-                    int final_theory_for_gpa = (final_theory*4)/10;
-                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
+                    
+                    int final_theory_for_gpa = (final_theory*6)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+assignment+final_theory_for_gpa; 
                     double grad_0 = getGratPointValue_0(gpa_vale);
                     String grad = getGratPointValue(gpa_vale);
                     DFT.addRow(new Object[]{student_id,course_id,department_id , grad_0,grad});
@@ -2691,22 +2704,22 @@ public class LectureView extends javax.swing.JFrame {
                 }
                 case 2 -> {
                     
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
-                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
                     int final_practical_for_gpa = (final_practical*3)/10;
                     int final_theory_for_gpa = (final_theory*4)/10;
-                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+assignment+final_practical_for_gpa+final_theory_for_gpa;
                     double grad_0 = getGratPointValue_0(gpa_vale);
-                     String grad = getGratPointValue(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
                     DFT.addRow(new Object[]{student_id,course_id,department_id , grad_0,grad});
                 }
                 case 3 -> {
                     
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
-                    int mid_term_for_gpa = (Mid_term*2)/10;
-                    int final_practical_for_gpa = (final_practical*3)/10;
-                    int final_theory_for_gpa = (final_theory*4)/10;
-                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
+                    int final_practical_for_gpa = (final_practical*4)/10;
+                    int final_theory_for_gpa = (final_theory*3)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+assignment+final_practical_for_gpa+final_theory_for_gpa;
                     double grad_0 = getGratPointValue_0(gpa_vale);
                     String grad = getGratPointValue(gpa_vale);
                     DFT.addRow(new Object[]{student_id,course_id,department_id , grad_0,grad});
@@ -2803,13 +2816,13 @@ public class LectureView extends javax.swing.JFrame {
             
             switch (rs.getType()) {
                 case 0 -> {
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
                     int mid_term_for_gpa = (Mid_term*2)/10;
                     int final_practical_for_gpa = (final_practical*3)/10;
                     int final_theory_for_gpa = (final_theory*4)/10;
                     int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
-                    String grad = getGratPointValue(gpa_vale);
                     double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
                     
                     linkedList.add(grad_0*gpa_value_FROM_DB);
                     linkedList2.add(gpa_value_FROM_DB);
@@ -2818,12 +2831,12 @@ public class LectureView extends javax.swing.JFrame {
                 }
                 case 1 -> {
                     
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int best_tow_of_tree_quiz_for_gpa = BestMarksFinder(Quiz_01,  Quiz_02,  Quiz_03,  Quiz_04);
                     int mid_term_for_gpa = (Mid_term*2)/10;
-                    int final_practical_for_gpa = (final_practical*3)/10;
-                    int final_theory_for_gpa = (final_theory*4)/10;
-                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
-                    String grad = getGratPointValue(gpa_vale);
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
+                    
+                    int final_theory_for_gpa = (final_theory*6)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+assignment+final_theory_for_gpa; 
                     double grad_0 = getGratPointValue_0(gpa_vale);
                     
                     linkedList.add(grad_0*gpa_value_FROM_DB);
@@ -2836,13 +2849,13 @@ public class LectureView extends javax.swing.JFrame {
                 }
                 case 2 -> {
                     
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
-                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
                     int final_practical_for_gpa = (final_practical*3)/10;
                     int final_theory_for_gpa = (final_theory*4)/10;
-                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
-                    String grad = getGratPointValue(gpa_vale);
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+assignment+final_practical_for_gpa+final_theory_for_gpa;
                     double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
                     
                     linkedList.add(grad_0*gpa_value_FROM_DB);
                     linkedList2.add(gpa_value_FROM_DB);
@@ -2852,13 +2865,14 @@ public class LectureView extends javax.swing.JFrame {
                 }
                 case 3 -> {
                     
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
-                    int mid_term_for_gpa = (Mid_term*2)/10;
-                    int final_practical_for_gpa = (final_practical*3)/10;
-                    int final_theory_for_gpa = (final_theory*4)/10;
-                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
-                    String grad = getGratPointValue(gpa_vale);
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
+                    int final_practical_for_gpa = (final_practical*4)/10;
+                    int final_theory_for_gpa = (final_theory*3)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+assignment+final_practical_for_gpa+final_theory_for_gpa;
                     double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
+                    
                     
                     linkedList.add(grad_0*gpa_value_FROM_DB);
                     linkedList2.add(gpa_value_FROM_DB);
@@ -3593,10 +3607,12 @@ public class LectureView extends javax.swing.JFrame {
         marks.setFinalPracticle(Integer.parseInt(Lpractical.getText()));
         marks.setFinalTheory(Integer.parseInt(Ltheory.getText()));
         marks.setType(MType.getSelectedIndex());
+        marks.setGPA(MGpa.getSelectedIndex());
         
         marks.InsertMarks(marks);
         
         MarksLoder();
+        CalculateGPA();
         
         LstudentID.setText(" ");
         LdepartmentID.setSelectedItem(0);
@@ -3614,6 +3630,7 @@ public class LectureView extends javax.swing.JFrame {
         Lpractical.setText("");
         Ltheory.setText("");
         MType.setSelectedIndex(0);
+        MGpa.setSelectedIndex(0);
         
         filedEditable();
         
@@ -3650,6 +3667,7 @@ public class LectureView extends javax.swing.JFrame {
         marks.setFinalPracticle(Integer.parseInt(Lpractical.getText()));
         marks.setFinalTheory(Integer.parseInt(Ltheory.getText()));
         marks.setType(MType.getSelectedIndex());
+        marks.setGPA(MGpa.getSelectedIndex());
         
         marks.UpdateMarks(marks);
         
@@ -3672,6 +3690,14 @@ public class LectureView extends javax.swing.JFrame {
         Ltheory.setText("");
         MType.setSelectedIndex(0);
         filedEditable();
+        
+        
+         btn_marks_save.setEnabled(true);
+         btn_marks_upload.setEnabled(false);
+         btn_marks_delete.setEnabled(false);
+        
+               
+         
     }//GEN-LAST:event_btn_marks_uploadActionPerformed
 
     private void btn_marks_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_marks_deleteActionPerformed
@@ -3702,6 +3728,12 @@ public class LectureView extends javax.swing.JFrame {
         Lassighment_02.setText("");
         Lpractical.setText("");
         Ltheory.setText("");
+        
+        
+        btn_marks_save.setEnabled(true);
+        btn_marks_upload.setEnabled(false);
+        btn_marks_delete.setEnabled(false);
+        
 
        
     }//GEN-LAST:event_btn_marks_deleteActionPerformed
@@ -3731,8 +3763,17 @@ public class LectureView extends javax.swing.JFrame {
         Lassighment_02.setText(String.valueOf(marks.getAssesment_02()));
         Lpractical.setText(String.valueOf(marks.getFinalPracticle()));
         Ltheory.setText(String.valueOf(marks.getFinalTheory()));
+        MType.setSelectedItem(marks.getType());
+        MGpa.setSelectedItem(marks.getGPA());
         
         MarksLoder();
+        
+        btn_marks_save.setEnabled(false);
+        btn_marks_upload.setEnabled(true);
+        btn_marks_delete.setEnabled(true);
+       
+               
+         
         
 //         try {
 //            BufferedImage image = ImageIO.read(new File(admin.getImagePathe()));
@@ -3768,6 +3809,10 @@ public class LectureView extends javax.swing.JFrame {
         Ltheory.setText("");
         
         MarksLoder();
+        
+        btn_marks_save.setEnabled(true);
+        btn_marks_upload.setEnabled(false);
+        btn_marks_delete.setEnabled(false);
         
 
         
@@ -3828,13 +3873,14 @@ public class LectureView extends javax.swing.JFrame {
         //Lsemester.setEditable(false);
         Lquize_01.setEditable(true);
         Lquize_02.setEditable(true);
-        Lquize_03.setEditable(true);
+       
         Lquize_03.setEditable(true);
         Lquize_04.setEditable(true);
         LmidTerm.setEditable(true);
         Lassignment_01.setEditable(true);
         Lassighment_02.setEditable(true);
         Lpractical.setEditable(false);
+        Lpractical.setText("0");
         Ltheory.setEditable(true);
     
     }
@@ -3849,9 +3895,11 @@ public class LectureView extends javax.swing.JFrame {
         Lquize_01.setEditable(true);
         Lquize_02.setEditable(true);
         Lquize_03.setEditable(true);
-        Lquize_03.setEditable(true);
+       
         Lquize_04.setEditable(false);
+        Lquize_04.setText("0");
         LmidTerm.setEditable(false);
+        LmidTerm.setText("0");
         Lassignment_01.setEditable(true);
         Lassighment_02.setEditable(true);
         Lpractical.setEditable(true);
@@ -3869,9 +3917,10 @@ public class LectureView extends javax.swing.JFrame {
         Lquize_01.setEditable(true);
         Lquize_02.setEditable(true);
         Lquize_03.setEditable(true);
-        Lquize_03.setEditable(true);
+       
         Lquize_04.setEditable(true);
         LmidTerm.setEditable(false);
+        LmidTerm.setText("0");
         Lassignment_01.setEditable(true);
         Lassighment_02.setEditable(true);
         Lpractical.setEditable(true);
@@ -3909,13 +3958,17 @@ public class LectureView extends javax.swing.JFrame {
 
     
     String GMstudent_id;
+    String GMsemester;
+    String GMlevel;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
         GMstudent_id=JOptionPane.showInputDialog("Enter Student ID");
+        GMsemester=JOptionPane.showInputDialog("Enter Student Semester");
+        GMlevel=JOptionPane.showInputDialog("Enter Level");
         
         Grade grade = new Grade();
-        grade.get(GMstudent_id);
+        grade.get(GMstudent_id,GMsemester,GMlevel);
         
         
         Gstudent_id.setText(grade.getStudentID());
@@ -4039,13 +4092,13 @@ public class LectureView extends javax.swing.JFrame {
             
             switch (rs.getType()) {
                 case 0 -> {
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                     int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
                     int mid_term_for_gpa = (Mid_term*2)/10;
                     int final_practical_for_gpa = (final_practical*3)/10;
                     int final_theory_for_gpa = (final_theory*4)/10;
                     int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
-                    String grad = getGratPointValue(gpa_vale);
                     double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
                     
                     linkedList.add(grad_0*gpa_value_FROM_DB);
                     linkedList2.add(gpa_value_FROM_DB);
@@ -4053,13 +4106,14 @@ public class LectureView extends javax.swing.JFrame {
                 }
                 case 1 -> {
                     
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
+                    int best_tow_of_tree_quiz_for_gpa = BestMarksFinder(Quiz_01,  Quiz_02,  Quiz_03,  Quiz_04);
                     int mid_term_for_gpa = (Mid_term*2)/10;
-                    int final_practical_for_gpa = (final_practical*3)/10;
-                    int final_theory_for_gpa = (final_theory*4)/10;
-                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
-                    String grad = getGratPointValue(gpa_vale);
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
+                    
+                    int final_theory_for_gpa = (final_theory*6)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+assignment+final_theory_for_gpa; 
                     double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
                     
                     linkedList.add(grad_0*gpa_value_FROM_DB);
                     linkedList2.add(gpa_value_FROM_DB);
@@ -4069,14 +4123,13 @@ public class LectureView extends javax.swing.JFrame {
                     
                 }
                 case 2 -> {
-                    
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
-                    int mid_term_for_gpa = (Mid_term*2)/10;
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
                     int final_practical_for_gpa = (final_practical*3)/10;
                     int final_theory_for_gpa = (final_theory*4)/10;
-                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
-                    String grad = getGratPointValue(gpa_vale);
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+assignment+final_practical_for_gpa+final_theory_for_gpa;
                     double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
                     
                     linkedList.add(grad_0*gpa_value_FROM_DB);
                     linkedList2.add(gpa_value_FROM_DB);
@@ -4085,13 +4138,13 @@ public class LectureView extends javax.swing.JFrame {
                 }
                 case 3 -> {
                     
-                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03) ;
-                    int mid_term_for_gpa = (Mid_term*2)/10;
-                    int final_practical_for_gpa = (final_practical*3)/10;
-                    int final_theory_for_gpa = (final_theory*4)/10;
-                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+mid_term_for_gpa+final_practical_for_gpa+final_theory_for_gpa;
-                    String grad = getGratPointValue(gpa_vale);
+                    int best_tow_of_tree_quiz_for_gpa = findLagestValue(Quiz_01, Quiz_02, Quiz_03);
+                    int assignment = ((Assignment_01 + Assignment_02)/2)/10;
+                    int final_practical_for_gpa = (final_practical*4)/10;
+                    int final_theory_for_gpa = (final_theory*3)/10;
+                    int gpa_vale = best_tow_of_tree_quiz_for_gpa+assignment+final_practical_for_gpa+final_theory_for_gpa;
                     double grad_0 = getGratPointValue_0(gpa_vale);
+                    String grad = getGratPointValue(gpa_vale);
                     
                     linkedList.add(grad_0*gpa_value_FROM_DB);
                     linkedList2.add(gpa_value_FROM_DB);
@@ -4137,36 +4190,36 @@ public class LectureView extends javax.swing.JFrame {
         switch (MType.getSelectedIndex()) {
             case 0:
                 btn_marks_save.setEnabled(true);
-                btn_marks_upload.setEnabled(true);
-                btn_marks_delete.setEnabled(true);
+                btn_marks_upload.setEnabled(false);
+                btn_marks_delete.setEnabled(false);
                 btn_marks_search.setEnabled(true);
-                btn_marks_search.setEnabled(true);
+               
                 btn_marks_clear.setEnabled(true);
                 filedEditable_0();
                 break;
             case 1:
                 btn_marks_save.setEnabled(true);
-                btn_marks_upload.setEnabled(true);
-                btn_marks_delete.setEnabled(true);
-                btn_marks_search.setEnabled(true);
+                 btn_marks_upload.setEnabled(false);
+                btn_marks_delete.setEnabled(false);
+                
                 btn_marks_search.setEnabled(true);
                 btn_marks_clear.setEnabled(true);
                 filedEditable_1();
                 break;
             case 2:
                 btn_marks_save.setEnabled(true);
-                btn_marks_upload.setEnabled(true);
-                btn_marks_delete.setEnabled(true);
-                btn_marks_search.setEnabled(true);
+                btn_marks_upload.setEnabled(false);
+                btn_marks_delete.setEnabled(false);
+               
                 btn_marks_search.setEnabled(true);
                 btn_marks_clear.setEnabled(true);
                 filedEditable_2();
                 break;
             default:
                 btn_marks_save.setEnabled(true);
-                btn_marks_upload.setEnabled(true);
-                btn_marks_delete.setEnabled(true);
-                btn_marks_search.setEnabled(true);
+                btn_marks_upload.setEnabled(false);
+                btn_marks_delete.setEnabled(false);
+               
                 btn_marks_search.setEnabled(true);
                 btn_marks_clear.setEnabled(true);
                 filedEditable_3();
@@ -4253,6 +4306,7 @@ public class LectureView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Lsemester;
     private javax.swing.JTextField LstudentID;
     private javax.swing.JTextField Ltheory;
+    private javax.swing.JComboBox<String> MGpa;
     private javax.swing.JComboBox<String> MType;
     private javax.swing.JTable MarksTable;
     private javax.swing.JButton Serch;
@@ -4353,6 +4407,7 @@ public class LectureView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel62;
