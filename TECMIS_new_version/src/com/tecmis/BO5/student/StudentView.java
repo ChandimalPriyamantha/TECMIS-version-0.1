@@ -41,6 +41,9 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
         Courseload();
         calculatGPA();
         
+         Image icon = new ImageIcon(this.getClass().getResource("/Images/icons8-systems-64.png")).getImage();
+        this.setIconImage(icon);
+        
         
     }
     

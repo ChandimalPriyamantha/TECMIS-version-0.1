@@ -5,6 +5,8 @@
 package com.tecmic.B05.tecnicalOfficer;
 
 import com.tecmic.B05.TecmisView.TechmisView;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,6 +19,8 @@ public class TecnicalOfficerLoginForm extends javax.swing.JFrame {
      */
     public TecnicalOfficerLoginForm() {
         initComponents();
+         Image icon = new ImageIcon(this.getClass().getResource("/Images/icons8-systems-64.png")).getImage();
+        this.setIconImage(icon);
     }
     
     /**

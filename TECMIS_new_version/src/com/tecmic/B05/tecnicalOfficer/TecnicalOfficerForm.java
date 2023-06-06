@@ -36,6 +36,8 @@ public final class TecnicalOfficerForm extends javax.swing.JFrame {
         Load();
         Loadm();
         UserLoad("technical_officer");
+        Image icon = new ImageIcon(this.getClass().getResource("/Images/icons8-systems-64.png")).getImage();
+        this.setIconImage(icon);
     }
     
     public void Load(){

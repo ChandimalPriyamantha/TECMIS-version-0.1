@@ -8,6 +8,7 @@ import com.tecmic.B05.admin.AdminLogin;
 import com.tecmic.B05.admin.AdminLoginForm;
 import com.tecmic.B05.lecture.LectureLoginForm;
 import com.tecmic.B05.lecture.LectureView;
+import com.tecmic.B05.tecnicalOfficer.TecnicalOfficerLoginForm;
 
 import com.tecmic.B05.user.User;
 import com.tecmis.BO5.student.StudentLoginForm;
@@ -161,6 +162,7 @@ public class TechmisView extends javax.swing.JFrame {
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 204, 204), new java.awt.Color(0, 204, 204), new java.awt.Color(0, 204, 204), new java.awt.Color(0, 204, 204)));
+        jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel6MouseClicked(evt);
@@ -195,6 +197,7 @@ public class TechmisView extends javax.swing.JFrame {
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 204, 204), new java.awt.Color(0, 204, 204), new java.awt.Color(0, 204, 204), new java.awt.Color(0, 204, 204)));
+        jPanel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel5MouseClicked(evt);
@@ -235,6 +238,7 @@ public class TechmisView extends javax.swing.JFrame {
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 204, 204), new java.awt.Color(0, 204, 204), new java.awt.Color(0, 204, 204), new java.awt.Color(0, 204, 204)));
+        jPanel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel7MouseClicked(evt);
@@ -353,7 +357,12 @@ public class TechmisView extends javax.swing.JFrame {
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
         // TODO add your handling code here:
         
-        //new TecnicalOfficerLoginForm().setVisible(true);
+        new TecnicalOfficerLoginForm().setVisible(true);
+       
+        this.dispose();
+        
+        
+        
     }//GEN-LAST:event_jPanel7MouseClicked
 
     /**
