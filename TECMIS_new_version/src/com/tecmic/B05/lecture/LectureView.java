@@ -2580,10 +2580,67 @@ public class LectureView extends javax.swing.JFrame {
                   }
                }
             
-      return (largestValue + secondLargestValue)/10;
+      return (largestValue + secondLargestValue)/2;
       } 
        
-       
+      public double BestMarksFinder(double  mark1,  double mark2,  double mark3,  double mark4){
+      
+          
+        double best1 = Integer.MIN_VALUE;
+        double best2 = Integer.MIN_VALUE;
+        double best3 = Integer.MIN_VALUE;
+
+        if (mark1 >= mark2 && mark1 >= mark3 && mark1 >= mark4) {
+            best1 = mark1;
+            if (mark2 >= mark3 && mark2 >= mark4) {
+                best2 = mark2;
+                best3 = Math.max(mark3, mark4);
+            } else if (mark3 >= mark2 && mark3 >= mark4) {
+                best2 = mark3;
+                best3 = Math.max(mark2, mark4);
+            } else {
+                best2 = mark4;
+                best3 = Math.max(mark2, mark3);
+            }
+        } else if (mark2 >= mark1 && mark2 >= mark3 && mark2 >= mark4) {
+            best1 = mark2;
+            if (mark1 >= mark3 && mark1 >= mark4) {
+                best2 = mark1;
+                best3 = Math.max(mark3, mark4);
+            } else if (mark3 >= mark1 && mark3 >= mark4) {
+                best2 = mark3;
+                best3 = Math.max(mark1, mark4);
+            } else {
+                best2 = mark4;
+                best3 = Math.max(mark1, mark3);
+            }
+        } else if (mark3 >= mark1 && mark3 >= mark2 && mark3 >= mark4) {
+            best1 = mark3;
+            if (mark1 >= mark2 && mark1 >= mark4) {
+                best2 = mark1;
+                best3 = Math.max(mark2, mark4);
+            } else if (mark2 >= mark1 && mark2 >= mark4) {
+                best2 = mark2;
+                best3 = Math.max(mark1, mark4);
+            } else {
+                best2 = mark4;
+                best3 = Math.max(mark1, mark2);
+            }
+        } else {
+            best1 = mark4;
+            if (mark1 >= mark2 && mark1 >= mark3) {
+                best2 = mark1;
+                best3 = Math.max(mark2, mark3);
+            } else if (mark2 >= mark1 && mark2 >= mark3) {
+                best2 = mark2;
+                best3 = Math.max(mark1, mark3);
+            } else {
+                best2 = mark3;
+                best3 = Math.max(mark1, mark2);
+            }
+        }
+      return (best1+best2+best3)/3;
+      } 
        
    public void CalculateGPA(){
         
