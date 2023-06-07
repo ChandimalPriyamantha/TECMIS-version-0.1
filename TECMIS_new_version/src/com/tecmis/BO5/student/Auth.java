@@ -14,6 +14,7 @@ public class Auth {
     
     private Auth(){}
 
+    
     public static Auth getInstance() {
         if(instance == null)
         {

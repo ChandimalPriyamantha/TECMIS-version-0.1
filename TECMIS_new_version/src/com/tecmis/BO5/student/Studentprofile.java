@@ -26,11 +26,10 @@ public class Studentprofile extends javax.swing.JInternalFrame {
 
    
    
-    public Studentprofile() {
+    public Studentprofile()
+    {
         initComponents();
-        Load("student");
-        
-           
+        Load("student");     
     }
     public void scaleImage(){
         Icon i = image_lbl.getIcon();
@@ -353,7 +352,7 @@ public class Studentprofile extends javax.swing.JInternalFrame {
         String filename = image.getAbsolutePath();
 
         image_lbl.setText(filename);
-        System.out.println(image_lbl);
+        //System.out.println(image_lbl);
         ImageIcon icon = new ImageIcon(filename);
         Image i = icon.getImage().getScaledInstance(image_lbl.getWidth(),image_lbl.getHeight(),Image.SCALE_SMOOTH);
         image_lbl.setIcon(icon);

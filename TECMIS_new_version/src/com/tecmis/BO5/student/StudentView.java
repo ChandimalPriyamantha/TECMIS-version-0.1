@@ -66,7 +66,7 @@ public class StudentView extends javax.swing.JFrame implements StudentViewInterf
             }
         }
     
-    
+   //polymorpism 
     public void LoadCourse()
     {   
         
