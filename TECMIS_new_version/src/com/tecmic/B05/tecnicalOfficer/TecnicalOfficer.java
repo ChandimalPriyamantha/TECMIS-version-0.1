@@ -40,7 +40,7 @@ public class TecnicalOfficer extends User {
             //ps.setString(10, tecnicalofficer.getUserName());
             //ps.setString(11, tecnicalofficer.getPassword());
             ps.setString(10, tecnicalofficer.getEmail());
-            //ps.setString(11, "E:\\Profile_pic\\TechnicalOfficer\\'"+tecnicalofficer.getUserID()+"'.png");
+            ps.setString(11, "E:\\Profile_pic\\TechnicalOfficer\\'"+tecnicalofficer.getUserID()+"'.png");
             ps.setString(12, tecnicalofficer.getDepartmentID());
             ps.setString(13, tecnicalofficer.getUserID());
             ps.executeUpdate();
@@ -55,7 +55,7 @@ public class TecnicalOfficer extends User {
               
             String file = tecnicalofficer.getImagePathe(); 
             BufferedImage image = ImageIO.read(new File(file));
-            //ImageIO.write(image , "png", new File("E:\\Profile_pic\\TechnicalOfficer\\'"+tecnicalofficer.getUserID()+"'.png"));
+            ImageIO.write(image , "png", new File("E:\\Profile_pic\\TechnicalOfficer\\'"+tecnicalofficer.getUserID()+"'.png"));
                
            }catch(Exception e){
                

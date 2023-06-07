@@ -10,4 +10,10 @@ package courseMatireal;
  */
 public class CourseMatireal {
     
+    
+    private String name;
+    private String file_path;
+    private String course_id;
+    private String department_id;
+    
 }
