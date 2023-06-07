@@ -19,8 +19,8 @@ public class TecnicalOfficerLoginForm extends javax.swing.JFrame {
      */
     public TecnicalOfficerLoginForm() {
         initComponents();
-//         Image icon = new ImageIcon(this.getClass().getResource("/Images/icons8-systems-64.png")).getImage();
-//        this.setIconImage(icon);
+         Image icon = new ImageIcon(this.getClass().getResource("/Images/icons8-systems-64.png")).getImage();
+        this.setIconImage(icon);
     }
     
     /**
